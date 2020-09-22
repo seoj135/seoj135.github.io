@@ -1,0 +1,1622 @@
+<!DOCTYPE html >
+<Html>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style>
+        body {
+            font-family: consolas, apple color emoji, segoe ui emoji, segoe ui symbol, noto color emoji;
+        }
+        h3, h5 {
+            display: inline-block;
+            margin-block-start: 3px;
+            margin-block-end: 3px;
+            margin-right: 5px;
+        }
+
+        ul {
+            display: inline-block;
+            /* padding: 0px; */
+            margin: 0px;
+        }
+
+        .subhead {
+            margin-left: 3px;
+        }
+
+        .fake_a {
+            color: blue;
+            margin-right: 0px;
+            cursor: pointer;
+        }
+        .fake_a:hover .mouse_over_only {
+            display: block;
+            margin-right: 0px;
+        }
+        .fake_a span {
+            color: black;
+        }
+        .fake_a span.subtxt {
+            cursor: default;
+            margin-left: 2px;
+        }
+
+        .mouse_over_only {
+            display: none;
+            margin-right: 0px;
+            text-decoration: none !important;
+            color: black;
+            cursor: text;
+        }
+
+        .go_to_top {
+            vertical-align: bottom;
+            padding-bottom: 4px;
+            cursor: pointer;
+        }
+
+        .index_a {
+            margin-top: 2px;
+            display: inline-block;
+        }
+    </style>
+
+    <script type="text/javascript">
+    var binary_data = "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";
+    </script>
+
+    <div id="body">
+        
+    </div>
+
+    <script type="text/javascript">
+    // -------------------------------------------------------------
+    // Utils
+    // -------------------------------------------------------------
+    function openLink(link) {
+        switch(event.target.className) {
+            case "fake_a":
+                break;
+            case "subtxt":
+            default:
+                // prevent to open on mouseover or and so on.
+                return;
+        }
+        window.open(link, '_blank', '', '');
+    }
+
+    // -------------------------------------------------------------
+    // Category Utils
+    // -------------------------------------------------------------
+    var _body = document.getElementById("body");
+    const indexID = "_index";
+
+    function genIndex(sections) {
+        // gen index of sections
+        /*
+            ============================
+            = General Computer Science =
+            = Machine Learning         =
+            = ...
+            = ETC                      =
+            ============================
+        */
+        const base = `<div id="${indexID}"><h3>Index</h3><br/></div>`
+        _body.insertAdjacentHTML("beforeend", base);
+
+        var _index = document.getElementById(indexID);
+        for(var i=0; i<sections.length; i++) {
+            var section = sections[i];
+            var head = section.head;
+            const row = `<span class="fake_a index_a" onclick="location.href='#${head}'">${head}</span><br/>`
+            _index.insertAdjacentHTML("beforeend", row);
+        }
+
+        _body.insertAdjacentHTML("beforeend", `<br/><br/>`);
+    }
+
+    function __main(data) {
+        var sections = data.sections;
+        genIndex(sections);
+
+        for(var i=0; i<sections.length; i++) {
+            attachSection(sections[i]);
+            _body.insertAdjacentHTML("beforeend", "<br/><br/>");
+        }
+    }
+
+    function attachSection(section) {       
+        var head = section.head;
+        const T_sectionHead = `<h3 id="${head}">${head}</h3>`;
+        _body.insertAdjacentHTML("beforeend", T_sectionHead);
+
+        var subhead = section.subhead;
+        const T_sectionSubHead = `<h5 class='subhead'>${subhead}</h5>`;
+        if(subhead != null && subhead != undefined) {
+            _body.insertAdjacentHTML("beforeend", T_sectionSubHead);
+        }
+
+        const T_goToTop = `<img src="data:image/*;base64,${binary_data}" 
+                                width=16 height=16 class="go_to_top" onclick="location.href='#${indexID}'"/>`;
+        _body.insertAdjacentHTML("beforeend", T_goToTop);
+
+        _body.insertAdjacentHTML("beforeend", `<br/>`);
+
+        var elems = section.elems;
+        for(var i=0; i<elems.length; i++) {
+            attachSectionElem(elems[i]);
+        }
+    }
+
+    function attachSectionElem(elem) {
+        var T_mouseover = "";
+        if(elem.mouseover != undefined) {
+            if(elem.mouseover.list != undefined) {
+                var list = attachSectionListElem(elem.mouseover.list, false);
+                T_mouseover = `<div class="mouse_over_only">${list}</div>`
+            } else if(elem.mouseover.txt != undefined) {
+                var txt = elem.mouseover.txt;
+                T_mouseover = `<div class="mouse_over_only">${txt}</div>`
+            }
+        }
+
+        if(elem.url != undefined) {
+            var url = elem.url;
+            var txt = elem.txt == undefined ? "" : elem.txt;
+            var subtxt = elem.subtxt == undefined ? "" : elem.subtxt;
+            const T_section = 
+                `<span class="fake_a" onclick="openLink('${url}')">${txt}<span class="subtxt"> ${subtxt}</span><br>${T_mouseover}</span>`;
+            _body.insertAdjacentHTML("beforeend", T_section);
+        } else {
+            var txt = elem.txt == undefined ? "" : elem.txt;
+            const T_simpletxt = `${txt}<br>`;
+            _body.insertAdjacentHTML("beforeend", T_simpletxt);
+
+            attachSectionListElem(elem.elems);
+        }
+
+        if(elem.always != undefined) {
+            attachSectionListElem(elem.always.list);
+        }
+    }
+
+    function attachSectionListElem(lists, append=true) {
+        if(lists == undefined) return;
+
+        var _li = "";
+        for(var i=0; i<lists.length; i++) {
+            var elem = lists[i];
+            var T_mouseover = "";
+            if(elem.mouseover != undefined) {
+                if(elem.mouseover.list != undefined) {
+                    var list = attachSectionListElem(elem.mouseover.list, false);
+                    T_mouseover = `<div class="mouse_over_only">${list}</div>`
+                } else if(elem.mouseover.txt != undefined) {
+                    var txt = elem.mouseover.txt;
+                    T_mouseover = `<div class="mouse_over_only">${txt}</div>`
+                }
+            }
+
+            var url = elem.url;
+            var txt = elem.txt;
+            var subtxt = elem.subtxt == undefined ? "" : elem.subtxt;
+
+            if(url == undefined && txt == undefined) {
+                _li += `<li>${elem}</li>`;
+            } else {
+                _li += `<li><span class="fake_a" onclick="openLink('${url}')">${txt}<span class="subtxt"> ${subtxt}</span><br>${T_mouseover}</span></li>`;
+            }
+        }
+        const T_lists = `<ul>${_li}</ul>`;
+
+        if(append) {
+            _body.insertAdjacentHTML("beforeend", `${T_lists} <br>`);
+        } 
+        return T_lists;
+    }
+
+    // var _GENERAL_COMPUTER_SCIENCE = {
+    var _GENERAL_COMPUTER_SCIENCE = {
+        head: "General Computer Science",
+        elems: [
+            {
+                url: "https://github.com/P1xt/p1xt-guides",
+                txt: "Various Guide",
+                subtxt: "Javascript, backend, web, data science, video game programming, native android, regex, Angular, Vue, React",
+                mouseover: undefined,
+                always: undefined
+            },
+            {
+                url: "https://www.analyticsindiamag.com/7-types-classification-algorithms/",
+                txt: "7 types of classification algorithms (Non-Neural Network)",
+                subtxt: undefined,
+                mouseover: {
+                    list: [
+                        "Naive Bayes",
+                        "Logistic Regression",
+                        "Stochastic Gradient Descent",
+                        "K-Nearest Neighbours",
+                        "Decision Tree",
+                        "Random Forest",
+                        "Support Vector Machine",
+                    ]
+                },
+                always: undefined
+            },
+            {
+                url: "https://wiki.whatwg.org/wiki/URL_schemes",
+                txt: "URL Schemes",
+                subtxt: undefined,
+                mouseover: undefined,
+                always: {
+                    list: [
+                        {
+                            url: "https://tools.ietf.org/html/draft-hoehrmann-javascript-scheme-03",
+                            txt: "Javascript",
+                        }
+                    ]
+                }
+            },
+            {
+                url: "https://rextester.com/l/cpp_online_compiler_gcc",
+                txt: "Online Compiler, default gcc"
+            },
+            {
+                url: "regexr.com",
+                txt: "Online Regex Builder"
+            },
+            {
+                url: "https://www.notion.so/bsut/Optimization-Hazard-Loop-e5b662544f3549419d8d9b21cdd7a1ec",
+                txt: "Optimization",
+                subtxt: "Hazard and Loop Unroll"
+            },
+            {
+                url: "https://wikidocs.net/17495",
+                txt: "Convex Optimization",
+                subtxt: "Includings: Linear Program, Quadratic Program ..."
+            },
+            {
+                url: undefined,
+                txt: "Staroceans.org: Pirates Ebooks and General Informations",
+                elems: [
+                    {
+                        url: "http://www.staroceans.org/",
+                        txt: "Main Page"
+                    },
+                    {
+                        url: "http://www.staroceans.org/generatedTrees/_e-book.html",
+                        txt: "ebooks"
+                    },
+                    {
+                        url: "http://www.staroceans.org/kernel-and-driver/%5BEmbedded.Android(2013.3)%5D.Karim.Yaghmour.pdf",
+                        txt: "Embedded Android",
+                        subtxt: "Karim Yaghmour"
+                    }
+                ]
+            }
+        ]
+    };
+
+    // var _MACHINE_LEARNING = {
+    var _MACHINE_LEARNING = {
+        head: "Machine Learning",
+        elems: [
+            {
+                url: "http://cs231n.github.io/convolutional-networks/",
+                txt: "CNN, Covolution Neural Network",
+                subtxt: ", lecture by stanford"
+            },
+            {
+                url: "https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728",
+                txt: "Seperable Convolutions: ",
+                subtxt: "Spatial, Depthwise, Pointwise"
+            },
+            {
+                url: "https://arxiv.org/pdf/1312.4400.pdf",
+                txt: "paper 2014: Network In Network",
+                subtxt: "Global Average Pooling"
+            },
+            {
+                url: "https://towardsdatascience.com/l1-and-l2-regularization-methods-ce25e7fc831c",
+                txt: "Regularization Method: l1, l2"
+            },
+            {
+                url: "http://benanne.github.io/2015/03/17/plankton.html",
+                txt: "How to squeeze from small dataset"
+            },
+            {
+                url: "http://codinginparadise.org/ebooks/html/blog/ten_deep_learning_trends_at_nips_2015.html",
+                txt: "10 Deep Learning Trends at NIPS 2015",
+                subtxt: "by Nasa ML Expert"
+            },
+            {
+                url: "https://keras.io/",
+                txt: "Keras Doc"
+            },
+            {
+                url: "https://github.com/keras-team/keras/tree/master/examples",
+                txt: "Keras Examples"
+            },
+            {
+                url: "https://machinelearningmastery.com/how-to-manually-scale-image-pixel-data-for-deep-learning/",
+                txt: "Pixel Value Normalization Method",
+                subtxt: "[0, 255] to [0.0, 1.0] or others"
+            },
+            {
+                url: "http://machinethink.net/blog/googles-mobile-net-architecture-on-iphone/",
+                txt: "Depthwise Convolution",
+                subtxt: "Convolution each channel seperately, should be same channel with input layer"
+            },
+            {
+                url: undefined,
+                txt: "Lightweight Model",
+                elems: [
+                    {
+                        url: "https://www.samsungsds.com/global/ko/support/insights/Neural-Network-AI.html",
+                        txt: "2019 Trend for Lightweight Model",
+                        subtxt: "Samsung SDS News"
+                    },
+                    {
+                        url: "https://mangastorytelling.tistory.com/entry/ETRI-%EA%B2%BD%EB%9F%89-%EB%94%A5%EB%9F%AC%EB%8B%9D-Lightweight-Deep-Learning-%EA%B8%B0%EC%88%A0-%EB%8F%99%ED%96%A5",
+                        txt: "2019 Trend for Lightweight Model",
+                        subtxt: "ETRI"
+                    }
+                ]
+            },
+            {
+                url: undefined,
+                txt: "Knowledge Distillation, Teacher-Student",
+                elems: [
+                    {
+                        url: "https://towardsdatascience.com/knowledge-distillation-simplified-dd4973dbc764",
+                        txt: "towards data science, Prakhar Ganesh"
+                    },
+                    {
+                        url: "https://medium.com/neuralmachine/knowledge-distillation-dc241d7c2322",
+                        txt: "medium.com, Ujjwal Upadhyay"
+                    }
+                ]
+            },
+            {
+                url: undefined,
+                txt: "Colah.github.io: Great explainations for DNN",
+                elems: [
+                    {
+                        url: "http://colah.github.io/",
+                        txt: "Main Page"
+                    },
+                    {
+                        url: "http://colah.github.io/posts/2015-08-Understanding-LSTMs/",
+                        txt: "RSTM",
+                        subtxt: "Get Intuitive even if it's replaced to transformer"
+                    }
+                ]
+            },
+            {
+                url: undefined,
+                txt: "ratsgo's blog: Great Korean explainations for NLP",
+                elems: [
+                    {
+                        url: "https://ratsgo.github.io/blog/categories/",
+                        txt: "Main Page:",
+                        subtxt: "NLP, LinearAlgebra, ML, DL, Statistics, Algorithm, GenerativeModel, ConvexOptimization"
+                    },
+                    {
+                        url: "https://ratsgo.github.io/natural%20language%20processing/2017/03/09/rnnlstm/",
+                        txt: "RNN and LSTM"
+                    },
+                    {
+                        url: "https://ratsgo.github.io/machine%20learning/2017/07/08/treecode/",
+                        txt: "Decision Tree"
+                    },
+                    {
+                        url: "https://ratsgo.github.io/machine%20learning/2017/05/23/SVM/",
+                        txt: "SVM, Support Vector Machine"
+                    },
+                    {
+                        url: "https://ratsgo.github.io/deep%20learning/2017/04/05/CNNbackprop/",
+                        txt: "CNN Backpropagation"
+                    },
+                    {
+                        url: "https://ratsgo.github.io/convex%20optimization/2017/12/25/convexset/",
+                        txt: "Convex Set"
+                    },
+                    {
+                        url: "https://ratsgo.github.io/convex%20optimization/2017/12/26/convexfunction/",
+                        txt: "Convex Function"
+                    }
+                ]
+            },
+            {
+                url: "https://medium.com/@dovanhuyen2018/back-propagation-in-long-short-term-memory-lstm-a13ad8ae7a57",
+                txt: "LSTM Backpropagation"
+            },
+            {
+                url: "https://blog.naver.com/PostView.nhn?blogId=jaeyoon_95&logNo=221786102497&parentCategoryNo=&categoryNo=&viewDate=&isShowPopularPosts=false&from=postView",
+                txt: "Faster R-CNN",
+                subtxt: "Anchor Box: prefined for center {x,y} by variables (size, aspect ratio)"
+            }
+        ]
+    };
+
+    // var _PROGRAMMING_LANGUAGE = {
+    var _PROGRAMMING_LANGUAGE = {
+        head: "Programming Language",
+        elems: [
+            {
+                url: "http://lambda-the-ultimate.org/",
+                txt: "Lamdba The Ultimate",
+                subtxt: "Active Programming Language Blog"
+            },
+            {
+                url: "https://skyul.tistory.com/274?category=118485",
+                txt: "Programming Language",
+                subtxt: "Academy, Conference, Journal",
+                mouseover: {
+                    list: [
+                        {
+                            url: "http://cseweb.ucsd.edu/conferences/popl/08/",
+                            txt: "Principles of Programming Languages ",
+                            subtxt: "POPL"
+                        },
+                        {
+                            url: "https://www.sigplan.org/Conferences/PLDI/",
+                            txt: "Programming Language Design and Implementation ",
+                            subtxt: "PLDI"
+                        },
+                        {   
+                            url: "http://www.oopsla.org/oopsla2008/",
+                            txt: "Object-Oriented Programming, Systems, Languages, and Applications ",
+                            subtxt: "OOPSLA"
+                        },
+                        {
+                            url: "https://ecoop.org/",
+                            txt: "European Conference on Object-Oriented Programming ",
+                            subtxt: "ECOOP"
+                        },
+                        {
+                            url: "https://www.cis.upenn.edu/~bcpierce/FOOL/",
+                            txt: "Foundations of Object-Oriented Languages ",
+                            subtxt: "FOOL"
+                        }
+                    ]
+                }
+            }
+        ]
+    };
+
+    // var _ANDROID = {
+    var _ANDROID = {
+        head: "Android",
+        elems: [
+            {
+                url: "https://stackoverflow.com/questions/5019686/what-methods-are-invoked-in-the-activity-lifecycle-in-the-following-cases",
+                txt: "Android Lifecycle of Physical Buttons",
+                subtxt: "BackPressing, Home, Negivation"
+            },
+            {
+                url: "http://blog.sephiroth.it/2010/10/09/disable-asset-compression-with-android-aapt/",
+                txt: "Android AAPT Disable Asset Compression ",
+                mouseover: {
+                    txt: `“.jpg”, “.jpeg”, “.png”, “.gif”,</br>
+                    “.wav”, “.mp2”, “.mp3”, “.ogg”, “.aac”,</br>
+                    “.mpg”, “.mpeg”, “.mid”, “.midi”, “.smf”, “.jet”,</br>
+                    “.rtttl”, “.imy”, “.xmf”, “.mp4”, “.m4a”,</br>
+                    “.m4v”, “.3gp”, “.3gpp”, “.3g2”, “.3gpp2”,</br>
+                    “.amr”, “.awb”, “.wma”, “.wmv”`
+                }
+            },
+            {
+                url: "https://webnautes.tistory.com/1054",
+                txt: "Set OpenCV up for Android"
+            },
+            {
+                url: "https://webnautes.tistory.com/1268",
+                txt: "Build OpenCV for Android by CMake and Ninja, Ant"
+            },
+            {
+                url: "https://github.com/alexcohn/native-camera2",
+                txt: "A fork of NDK native-camera2 library to support for API 21 Lollipop or higher, armeabi-v7a only"
+            },
+            {
+                url: "https://stackoverflow.com/questions/48406497/camera2-understanding-the-sensor-and-device-orientations",
+                txt: "Android Camera Orientation Relation among Front-facing, Back-facing, Sensor, device"
+            },
+            {
+                url: undefined,
+                txt: "Android Camera 2 HAL architecture,",
+                elems: [{
+                    url: "https://stackoverflow.com/questions/28566898/android-camera2-speed-up",
+                    txt: "Create Multiple Requests for faster capture speeds"
+                }, {
+                    url: "https://www.slideshare.net/lbk003/b-kaur-computationalphotographycamera2v3ss",
+                    txt: "Slide Version, 28 of 68"
+                }]
+            },
+            {
+                url: undefined,
+                txt: "Android Hardware/HAL use GPU memory: Android OS Source, Master Branch",
+                subtxt: "OS Camera3 == SDK Camera2 ",
+                elems: [
+                    {
+                        url: "https://android.googlesource.com/platform/hardware/libhardware/+/refs/heads/master/include/hardware/camera3.h",
+                        txt: "camera3_stream_buffer.h, 1853"
+                    },
+                    {
+                        url: "https://android.googlesource.com/platform/hardware/libhardware/+/refs/heads/master/modules/camera/3_0/Stream.h",
+                        txt: "stream.h, 20",
+                        mouseover: {
+                            txt: `
+                            #include &lt;hardware/camera3.h&gt;<br/>
+                            #include &lt;hardware/gralloc.h&gt;<br/>
+                            #include &lt;system/graphics.h&gt;<br/>
+                            #include &lt;utils/Mutex.h&gt;<br/>
+                            `
+                        }
+                    },
+                    {
+                        url: "https://android.googlesource.com/platform/hardware/libhardware/+/refs/heads/master/include/hardware/gralloc.h",
+                        txt: "gralloc.h, 404",
+                        mouseover: {
+                            txt: `
+                            static inline int gralloc_open(const struct hw_module_t* module, <br/>
+                            &nbsp;&nbsp;struct alloc_device_t** device) { <br/>
+                            &nbsp;return module->methods->open(module, <br/>
+                            &nbsp;&nbsp;&nbsp;<b>GRALLOC_HARDWARE_GPU0</b>, TO_HW_DEVICE_T_OPEN(device)); <br/>
+                            } <br/>
+                            `
+                        }
+                    },
+                    {
+                        url: "https://android.googlesource.com/platform/hardware/libhardware/+/refs/heads/master/modules/gralloc/gralloc.cpp",
+                        txt: "gralloc.cpp, 77",
+                        mouseover: {
+                            txt: `
+                            struct private_module_t HAL_MODULE_INFO_SYM = { <br/>
+                            &nbsp;.base = { <br/>
+                            &nbsp;&nbsp;.common = { <br/>
+                            &nbsp;&nbsp;&nbsp;.tag = HARDWARE_MODULE_TAG, <br/>
+                            &nbsp;&nbsp;&nbsp;.version_major = 1, <br/>
+                            &nbsp;&nbsp;&nbsp;.version_minor = 0, <br/>
+                            &nbsp;&nbsp;&nbsp;.id = <b>GRALLOC_HARDWARE_MODULE_ID</b>, <br/>
+                            &nbsp;&nbsp;&nbsp;.name = "Graphics Memory Allocator Module", <br/>
+                            &nbsp;&nbsp;&nbsp;.author = "The Android Open Source Project", <br/>
+                            &nbsp;&nbsp;&nbsp;.methods = &gralloc_module_methods <br/>
+                            &nbsp;&nbsp;}, <br/>
+                            &nbsp;&nbsp;.registerBuffer = gralloc_register_buffer, <br/>
+                            &nbsp;&nbsp;.unregisterBuffer = gralloc_unregister_buffer, <br/>
+                            &nbsp;&nbsp;.lock = gralloc_lock, <br/>
+                            &nbsp;&nbsp;.unlock = gralloc_unlock, <br/>
+                            &nbsp;}, <br/>
+                            &nbsp;.framebuffer = 0, <br/>
+                            &nbsp;.flags = 0, <br/>
+                            &nbsp;.numBuffers = 0, <br/>
+                            &nbsp;.bufferMask = 0, <br/>
+                            &nbsp;.lock = PTHREAD_MUTEX_INITIALIZER, <br/>
+                            &nbsp;.currentBuffer = 0, <br/>
+                            &nbsp;}; <br/>
+                            `
+                        }
+                    },
+                ]
+            },
+            {
+                url: "https://stackoverflow.com/questions/30510928/convert-android-camera2-api-yuv-420-888-to-rgb?rq=1",
+                txt: "Android YUV_420_888 to BGR"
+            },
+            {
+                url: "https://github.com/sjfricke/Tango-C-NDK-Tutorial/blob/master/Section_01_NDK/Tutorials/Chapter_04.md",
+                txt: "Tutorial and Guide for Android NDK. and even Graphics, AR(Tango)"
+            },
+            {
+                url: "http://blog.httrack.com/blog/2013/08/23/catching-posix-signals-on-android/",
+                txt: "Android NDK crash Advice"
+            },
+            {
+                url: "https://community.arm.com/android-community/b/android/posts/10-android-ndk-tips",
+                txt: "Android NDK 10 tips"
+            },
+            {
+                url: "https://blog.overops.com/5-tips-for-reducing-your-java-garbage-collection-overhead/",
+                txt: "5 Tips for Java Garbage Collection Overhead"
+            },
+            {
+                url: undefined, // important for simple txt form
+                txt: "JNI 6.0 Specification",
+                elems: [{
+                    url: "https://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/jniTOC.html",
+                    txt: "JDK 7"
+                },
+                {
+                    url: "https://docs.oracle.com/javase/8/docs/technotes/guides/jni/spec/jniTOC.html",
+                    txt: "JDK 8"
+                }]
+            },
+            {
+                url: "http://journals.ecs.soton.ac.uk/java/tutorial/native1.1/implementing/method.html",
+                txt: "Calling Java Method on jni"
+            },
+            {
+                url: "https://www.ibm.com/developerworks/library/j-jni/index.html",
+                txt: "jni Practive on IBM"
+            },
+            {
+                url: undefined,
+                txt: "LineageOs Based Opensource Project",
+                always: {
+                    list: [
+                        {
+                            url: "https://github.com/LineageOS/android_frameworks_base",
+                            txt: "LineageOS FrameWork",
+                            subtxt: "Apache 2.0 Useful codes including NDK(android_framework_base/libs/*)"
+                        },
+                        {
+                            url: "https://gitlab.e.foundation/e/os/android_frameworks_base/tree/029f64303b8fe506ef34c12777da86b830d3bf7a",
+                            txt: "LineageOS fork from Derek Sollenberger",
+                            subtxt: "/libs/ui/FrameBufferNativeWindow.cpp"
+                        }
+                    ]
+                }
+            },
+            {
+                url: "http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.api.AndroidSourceSet.html",
+                txt: "Android Gradle sourceSets"
+            },
+            {
+                url: undefined,
+                txt: "Android Icon",
+                always: {
+                    list: [
+                        {
+                            url: "https://iconhandbook.co.uk/reference/chart/android/",
+                            txt: "Icon Reference Chart"
+                        },
+                        {
+                            url: "https://developer.android.com/studio/write/image-asset-studio?hl=ko",
+                            txt: "Android Studio Image Asset Studio",
+                            subtxt: "can make with any size of image, recommand square"
+                        }
+                    ]
+                }
+            },
+            {
+                url: "https://medium.com/@shelajev/6-tips-to-speed-up-your-gradle-build-3d98791d3df9",
+                txt: "6 tips for faster gradle build"
+            },
+            {
+                url: "https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a",
+                txt: "ARMv8 Neon Guide",
+                subtxt: "SIMD"
+            }
+        ]
+    };
+     
+    // var _CMAKE = {
+    var _CMAKE = {
+        head: "CMAKE",
+        elems: [
+            {
+                url: "https://crascit.com/2017/04/18/generated-sources-in-cmake-builds/",
+                txt: "Cmake configure_file command",
+                subtxt: ", command for generate source code using .in file"
+            },
+            {
+                url: undefined,
+                txt: "find_package",
+                elems: [
+                    {
+                        url: "https://riptutorial.com/ko/cmake/example/22950/find-package-%EB%B0%8F-%EC%B0%BE%EA%B8%B0-%EC%82%AC%EC%9A%A9--package---cmake-%EB%AA%A8%EB%93%88",
+                        txt: "find_package overview",
+                    },
+                    {
+                        url: "https://github.com/WebAssembly/wasmint/blob/master/cmake/FindSDL2.cmake",
+                        txt: "find<xxxx>.cmake example"
+                    },
+                    {
+                        url: "https://cmake.org/cmake/help/v3.16/manual/cmake-packages.7.html",
+                        txt: "Package Registry",
+                        subtxt: 
+                                `<br/>
+                                HKEY_CURRENT_USER\\Software\\Kitware\\CMake\\Packages\\<PackageName>  :Windows User Package Registry
+                                <br/>
+                                HKEY_LOCAL_MACHINE\\Software\\Kitware\\CMake\\Packages\\<PackageName>  :Windows System Package Registry
+                                <br/>
+                                ~/.cmake/packages/<PackageName>  :Unix-like
+                            `
+                    },
+                    {
+                        url: "https://stackoverflow.com/questions/42027646/default-search-paths-for-cmake-include-vs-find-package",
+                        txt: "module mode, config mode"
+                    }
+                ]
+            },
+            {
+                url: undefined,
+                txt: "Undocumented Options",
+                elems: [
+                    {
+                        url: "https://stackoverflow.com/a/54279862",
+                        txt: "Hitchhiker's Guide to CMake"
+                    },
+                    {
+                        url: "https://cgold.readthedocs.io/en/latest/glossary/-H.html",
+                        txt: "-H, < 3.13",
+                        subtxt: "CMAKE_SOURCE_DIR variable"
+                    },
+                    {
+                        url: "https://cgold.readthedocs.io/en/latest/glossary/-S.html#s",
+                        txt: "-S, >= 3.13",
+                        subtxt: "CMAKE_SOURCE_DIR variable"
+                    },
+                    {
+                        url: "https://cgold.readthedocs.io/en/latest/glossary/-B.html",
+                        txt: "-B",
+                        subtxt: "CMAKE_BINARY_DIR variable"
+                    }
+                ]
+            }
+        ]
+    };
+        
+    // var _C_CPP = {
+    var _C_CPP = {
+        head: "C/C++",
+        elems: [{
+            url: "http://soen.kr/",
+            txt: "Many tutorial and documents, (Sofeware Engineering Lab)",
+            subtxt: "C/C++"
+        },
+        {
+            url: "http://soen.kr/lecture/ccpp/cpp2/16-1-3.htm",
+            txt: "Calling Convension"
+        },
+        {
+            url: "http://tcpschool.com/cpp/intro",
+            txt: "tcpSchools, C++ Reference site with Korean"
+        },
+        {
+            url: "https://www.lesstif.com/pages/viewpage.action?pageId=12943736",
+            txt: "Precompiled Macros for each compiler"
+        },
+        {
+            url: "https://itanium-cxx-abi.github.io/cxx-abi/abi.html#mangling",
+            txt: "Mangling Name Rule"
+        },
+        {
+            url: "https://demangler.com/",
+            txt: "Demangler Online for GCC and MSVC C++"
+        },
+        {
+            url: "https://www.cprogramming.com/reference/preprocessor/token-pasting-operator.html",
+            txt: "Token Pasting Operater",
+            subtxt: "##",
+            mouseover: { 
+                txt: `#define type i##nt <br/>
+                    type a; // same as int a; since i##nt pastes together to "int"`
+            }
+        },
+        {
+            url: "https://en.cppreference.com/w/cpp/language/lambda#Lambda_capture",
+            txt: "Lambda and Capture",
+            mouseover: {
+                txt: `int x = 8;<br/>
+                int y = 9;<br/>
+                int* z = &x;<br/>
+                [this, x, &y, *z] {<br/>
+                &nbsp;...<br/>
+                }`
+            }
+        },
+        {
+            url: "http://jakascorner.com/blog/2016/02/lock_guard-and-unique_lock.html",
+            txt: "std::unique_lock vs std::lock_guard",
+            subtxt: "std::lock_guard is only useful for critical section block",
+            mouseover: {
+                txt: `std::mutex mutex;<br/>
+                void main() {<br/>
+                &nbsp;...<br/>
+                &nbsp;std::unique_lock lock(mutex);<br/>
+                &nbsp;... critical section ...<br/>
+                &nbsp;lock.unlock(); // it can unlock by functional call <br/>
+                &nbsp;...<br/>
+                &nbsp;{<br/>
+                &nbsp;&nbsp;std::lock_guard guard(mutex);<br/>
+                &nbsp;&nbsp;... critical section ...<br/>
+                &nbsp;} // lock_guard is automatically unlocked, can not unlock it by force <br/>
+                &nbsp;...<br/>
+                }<br/>`
+            }
+        },
+        {
+            url: "https://zpjiang.me/2018/08/08/Copy-Constructor-and-std-vector-emplace-back/",
+            txt: "std::vector and CopyConstructor",
+            subtxt: "prefer emplace_back than push_back",
+            mouseover: {
+                txt: `on std::vector is resized by push_back, <br/>
+                &nbsp;&nbsp; CopyConstructor will be called again`
+            }
+        },
+        {
+            url: "https://gist.github.com/mike168m/9ac2ca792dd695486845bb051978a867",
+            txt: "Eigen Cheat/Quick Sheet",
+        },
+        {
+            url: "http://www.modernescpp.com/index.php",
+            txt: "modern cpp"
+        },
+        {
+            url: "https://www.learncpp.com/cpp-tutorial/15-5-stdunique_ptr/",
+            txt: "Returning and Passing std::unique_ptr"
+        },
+        {
+            url: "https://stackoverflow.com/a/495056",
+            txt: "Explicit implementation for the template class",
+            mouseover: {
+                txt: `locate explicit template declaration to end of .cpp file. <br/>
+                    &nbsp; ... <br/>
+                    &nbsp; template&lt;class T&gt; <br/>
+                    &nbsp; bool AClass<T>::process() <br/>
+                    &nbsp; ... <br/>
+                    &nbsp; template class AClass&lt;int&gt;; <br/>
+                    &nbsp; template class AClass&lt;double&gt;; <br/>
+                    &nbsp; ...
+                `
+            }
+        },
+        {
+            url: "https://stackoverflow.com/a/29502338",
+            txt: "std::enable_if, to restrict types for template",
+            subtxt: "cross platform is viable",
+            mouseover: {
+                txt: `template &lt;typename TYPE, typename std::enable_if&lt;std::is_floating_point&lt;TYPE&gt;::value, PREC&gt;::type* = nullptr&gt;`
+            }
+        },
+        {
+            url: "https://xsimd.readthedocs.io/en/latest/",
+            txt: "Document for xsimd",
+            subtxt: "X, Single Instruction, Multiple Data",
+            mouseover: {
+                txt: `&nbsp; viable batch_size: 2 * 64bit, 4 * 32bit, 8 * 16bit, 16 * 8bit using 128bit register`
+            }
+        },
+        {
+            url: "https://github.com/p12tic/libsimdpp",
+            txt: "github for simdpp",
+        }
+        ]
+    };
+
+    // var _Optimization = {
+    var _Optimization =  {
+        head: "Optimization",
+        
+        elems: [
+            {
+                url: "https://stackoverflow.com/questions/14561402/how-is-this-size-alignment-working",
+                txt: "Number Alignment to 2^x",
+                subtxt: "RoundUp: size = (size + alignment-1) & ~(alignment-1);"
+            },
+            {
+                url: "https://github.com/p12tic/libsimdpp",
+                txt: "simdpp",
+                subtxt: "A wrapper for simd (with many overhead and restricts)"
+            },
+            {
+                url: "https://developer.arm.com/documentation/dui0491/h/using-neon-support/loads-of-a-single-vector-or-lane",
+                txt: "Neon Intrinsic Docs"
+            },
+            {
+                url: "https://community.arm.com/developer/ip-products/processors/b/processors-ip-blog/posts/coding-for-neon---part-5-rearranging-vectors",
+                txt: "Neon description articles"
+            },
+            {
+                url: "https://software.intel.com/sites/landingpage/IntrinsicsGuide/",
+                txt: "Intel SIMD Intrinsic Docs"
+            },
+            {
+                url: "https://www.agner.org/optimize/",
+                txt: "AGNER, optimize",
+                subtxt: "Various optimization",
+                always: {
+                    list: [
+                        {
+                            url: "https://graphics.stanford.edu/~seander/bithacks.html",
+                            txt: "Bit Hacks",
+                            subtxt: "many resources for operating bits"
+                        }
+                    ]
+                }
+            },
+            {
+                url: "https://godbolt.org/",
+                txt: "The Goddness tool to inspect assembly"
+            },
+            {
+                url: "https://stackoverflow.com/a/53297682",
+                txt: "Godbolt compiler options for neon",
+                mouseover: {
+                    txt: `
+                    arm gcc: -march=armv8-a -mfpu=neon -mfloat-abi=hard -Wall -W -std=c++17 -fopenmp-simd -O3 -ffast-math -fopt-info-vec-omp-optimized-missed <br/>
+                    x86-64 clang: -target armv8a-none-eabi -Wall -W -Werror=pass-failed -std=c++2a -fopenmp-simd -O3 -ffast-math -Rpass="loop|vect" -Rpass-missed="loop|vect" -Rpass-analysis="loop|vect"
+                    `
+                }
+            },
+            {
+                url: undefined,
+                txt: "division",
+                always: {
+                    list: [
+                        {
+                            url: "https://github.com/tuxcell/DivisionByConstantHackersDelightAssemblyArduino",
+                            txt: "Division By Constant for Arduino, ref Hacker's Delight"
+                        },
+                        {
+                            url: "https://libdivide.com/",
+                            txt: "libdivide"
+                        }
+                    ]
+                }
+            },
+            {
+                url: "https://github.com/ermig1979/Simd",
+                txt: "ERMIG 1979",
+                subtxt: "Good reference for simd implement"
+            }
+        ]
+    };
+        
+    // var _Library = {
+    var _Library = {
+        head: "Library",
+
+        elems: [{
+            url: "https://www.slant.co/topics/3964/~best-3d-c-game-engines-with-full-source-code-access",
+            txt: "3D Engine, Best 7 in 1Q. 2019."
+        },
+        {
+            url: "http://www.emgu.com/wiki/index.php/Main_Page",
+            txt: "EmguCV",
+            subtxt: "OpenCV for .NET"
+        }]
+    };
+
+    // var _UI = {
+    var _UI = {
+        head: "UI",
+        subhead: "UI, Colors, Icons",
+        elems: [
+            {
+                url: "https://iconmonstr.com/",
+                txt: "IconMonstr, free on germany"
+            },            
+            {
+                url: "https://www.iconfinder.com/",
+                txt: "IconFinder"
+            },
+            {
+                url: "https://uigradients.com/",
+                txt: "UI Gradients for Color Picking"
+            },
+            {
+                url: "https://material.io/design/color/the-color-system.html#tools-for-picking-colors",
+                txt: "Material Design and Colors"
+            }
+        ]
+    };
+
+    // var _UX_Traditional = {
+    var _UX_Traditional = {
+        head: "UX, traditional UserExperience",
+
+        elems: [{
+                url: "https://www.computerhope.com/tips/tip32.htm",
+                txt: "Top 10 Mouse UX, protips",
+                subtxt: "Shift+Scrolling: to scroll horizontally"
+            },
+        ]
+    }
+        
+    // var _Windows = {
+    var _Windows = {
+        head: "Windows",
+
+        elems: [{
+                url: "https://www.askvg.com/tip-customize-start-screen-tiles-background-color-text-color-and-logo-in-windows-8-1/",
+                txt: "Suppot General App for UWP Visual Option",
+                subtxt: " visualElementsManifest.xml"
+            },
+            {
+                url: "https://ss64.com/nt/",
+                txt: "Batch Command Doc"
+            }
+            ,{
+                url: "https://docs.microsoft.com/ko-kr/windows/wsl/install-win10",
+                txt: "Linux Subsystem for Window 10",
+                subtxt: `
+                        too change root password: sudo su<br/>
+                        &nbsp; access windows file system: /mnt
+                    `
+            },
+            {
+                url: "https://cmatskas.com/generate-ascii-folder-structures-for-windows-with-tree/",
+                txt: "tree command",
+                subtxt: "print Directory Structure as text, on Windows",
+                always: {
+                    list: [
+                        `. <br/>
+                        ├─folder 1 <br/>
+                        │  ├─a <br/>
+                        │  └─b <br/>
+                        ├─folder 2 <br/>
+                        └─folder 3 <br/>
+                        `
+                    ]
+                }
+            },
+            {
+                url: "https://www.tenforums.com/tutorials/35493-change-copy-name-extension-template-windows.html",
+                txt: "windows explorer CopyNameTemplate",
+                subtxt: "file.ext -> file - 복사본 (2).ext → file.ext -> file (2).ext"
+            },
+            {
+                url: "https://stackoverflow.com/a/13654421",
+                txt: "Windows which equivalent: where.exe",
+                subtxt: "set-alias which where.exe, is useful, in powershell"
+            }
+        ]
+    };
+
+    // var _Ubuntu = {
+    var _Ubuntu = {
+        head: "Ubuntu",
+        elems: [
+            {
+                url: "https://ilcm96.blogspot.com/2019/02/ubuntu18.10installation.html?m=1",
+                txt: "Ubuntu 18.10, 18.04 Dual Boot Installation for Windows 10",
+                subtxt: " tip. create 128MB EFI Partition for Grub(Boot Section)"
+            },
+            {
+                url: "https://www.howtogeek.com/323390/how-to-fix-windows-and-linux-showing-different-times-when-dual-booting/",
+                txt: "Ubuntu Windows Dual Boot, to fix Time Difference between os'",
+                subtxt: "recommend Set Ubuntu interpret time as [Local Time]"
+            },
+            {
+                url: "https://wiki.kldp.org/HOWTO/html/Adv-Bash-Scr-HOWTO/",
+                txt: "Wiki for Advanced Bash Shell Script",
+                subtxt: ""
+            },
+            {
+                url: "https://12bme.tistory.com/14",
+                txt: "Advanced Bash Shell Script",
+                subtxt: "Especially Magic Number, Shebang: #!"
+            },
+            {
+                url: undefined,
+                txt: "Process Substitution",
+                elems: [
+                    {
+                        url: "http://mywiki.wooledge.org/ProcessSubstitution",
+                        txt: "a wiki"
+                    },
+                    {
+                        url: "https://unix.stackexchange.com/questions/17107/process-substitution-and-pipe",
+                        txt: "best explaination for ",
+                        subtxt: `<br/>pass file example<br/>echo \<(date)<br/>pass STDIN example<br/>echo \< \<(date)`
+                    },
+                ]
+            },
+            {
+                url: "https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06_03",
+                txt: "Command Substitution",
+                subtxt: " $(command) or `command` "
+            },
+            {
+                url: "https://kldp.org/node/83016",
+                txt: "source command.sh",
+                subtxt: `
+                    is equivalent for '. command.sh' <br/>
+                    &nbsp; but not equal with ./command.sh <br/>
+                    &nbsp; 'source' affect current shell's environment variables
+                    `
+            },
+            {
+                url: "https://github.com/emasab/shelltile/blob/master/README.md",
+                txt: "shelltile",
+                subtxt: "windows Grouping and Edge Tiling, may need tweaks"
+            }
+        ]
+    };
+        
+    // var _Text_Management = {
+    var _Text_Management = {
+        head: "Text Management",
+        elems: [
+            {
+                url: "https://docs.microsoft.com/ko-kr/dotnet/standard/base-types/regular-expression-language-quick-reference",
+                txt: "Regex MSDN"
+            },
+            {
+                url: "https://blog.ostermiller.org/find-comment",
+                txt: "Block Comment Regex,",
+                subtxt: " Regex: /\\*([^*]|[\\r\\n]|(\\*([^/]|[\\r\\n])))*\\*/ "
+            },
+            {
+                url: "https://coolsymbol.com/emojis/emoji-for-copy-and-paste.html",
+                txt: "emoji online",
+                subtxt: "👍"
+            }
+        ]
+    };
+
+    // var _IDE = {
+    var _IDE = {
+        head: "IDE",
+        subhead: "Integrated Development Environment",
+        elems: [
+            {
+                url: "https://www.vobour.com/%EA%B0%9C%EB%B0%9C-%EC%83%9D%EC%82%B0%EC%84%B1%EC%9D%84-%EC%98%AC%EB%A0%A4%EC%A3%BC%EB%8A%94-vscode%EC%9D%98-%EC%86%8C%EC%86%8C-%ED%95%9C-%EA%B8%B0%EB%8A%A5%EB%93%A4",
+                txt: "VSCODE, shortcut",
+                always: {
+                    list: [
+                        "change line with upto, downto: alt+up or alt+down",
+                        "copy upto, downto: shift+alt+up or shift+alt+down",
+                        "Symbol rename: F2",
+                        "Search Symbols all: shitf+F2",
+                        "Go to Definition: ctrl+leftclick or F12",
+                    ]
+                }
+            }
+        ]
+    }
+
+    // var _Document_Office = {
+    var _Document_Office = {
+        head: "Document, Office",
+        subhead: " excel, docs, hwp, notion ...",
+        elems: [
+            {
+                url: "https://blockdmask.tistory.com/46",
+                txt: "HWP, Table Shortcuts",
+                always: {
+                    list: [
+                        "Table Selection: F5, cancel: ESE",
+                        "merge: m, on selected",
+                        "divide: s, on selected",
+                    ]
+                }
+            },
+            {
+                url: "https://neweducation2.tistory.com/1760",
+                txt: "HWP, Bullet or Numbered Format",
+                always: {
+                    list: [
+                        "adding, increasing: ctrl+'+'",
+                        "decreasing: ctrl+-"
+                    ]
+                }
+            },
+            {
+                url: "https://www.computerhope.com/jargon/c/ctrl-d.htm",
+                txt: "Excel, filldown, fillright",
+                subtxt: "fill down: ctrl+D, fill right: ctrl+R"
+            },
+            {
+                url: "https://radreads.co/the-top-notion-tips-tricks-and-keyboard-shortcuts/",
+                txt: "Notion, keyboard shortcuts",
+                always: {
+                    list: [ 
+                        "toggle button: ctrl+Enter",
+                    ]
+                }
+            },
+            {
+                url: "https://www.cs.bgu.ac.il/~khitron/Equation Editor.pdf",
+                txt: "PPT, math equation insertion by keyboard",
+                always: {
+                    list: [
+                        `Matrix: <b>\\matrix(1&2@3&3)</b> <br/>
+                        &nbsp;&nbsp; &: column divider <br/>
+                        &nbsp;&nbsp; @: row divider <br/>
+                        &nbsp;&nbsp; use <b>\\pmatrix(1&2@3&3)</b> to construct matrix with braces
+                        `
+                    ]
+                }
+            },
+        ]
+    }
+        
+    // var _Git = {
+    var _Git = {
+        head: "Git",
+        elems: [
+            {
+                url: "https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/",
+                txt: "Git Basic Commands to Push"
+            },
+            {
+                url: "http://bunhere.tistory.com/37",
+                txt: "Git Basic Commands and Issues"
+            },
+            {
+                url: "https://www.gitignore.io/",
+                txt: "Git Ignore Generator"
+            },
+            {
+                url: "https://hong9.tistory.com/1",
+                txt: "Bonobo Git Server Setup and Installation"
+            },
+            {
+                url: "https://stackoverflow.com/a/1519032",
+                txt: "Git push &ltlocal branch&gt to &ltremote branch&gt",
+                subtxt: "git push &ltremote-name&gt &ltlocalBranch&gt:&ltremoteBranch&gt"
+            },
+            {
+                url: "https://stackoverflow.com/a/13558944",
+                txt: "Git unadd, warning: without --cached option, file will be deleted physically",
+                subtxt: "<br/>└ git rm --cached <file>  /// git rm --cached -r {directory}"
+            },
+            {
+                url: "https://stackoverflow.com/a/18278072",
+                txt: "Pre-commit, windows use ported bash", 
+                subtxt: "so doesn't need .bat script"
+            },
+            {
+                url: "https://devlog.github.io/git-lfs/2015/12/09/git-lfs.html",
+                txt: "Git LFS",
+                subtxt: "Large File Storage",
+                mouseover: {
+                    txt: `git lfs install<br/>
+                        git lfs track "*.jpg"<br/>
+                        git add *.jpg<br/>
+                        git commit -m "msg"<br/>
+                        git push origin local
+                        `
+                }
+            },
+            {
+                url: "https://im-developer.tistory.com/182",
+                txt: "Git Squash Merge"
+            }
+        ]
+    };
+        
+    // var _Javascript = {
+    var _Javascript = {
+        head: "Javascript",
+        elems: [
+            {
+                url: "https://webclub.tistory.com/5",
+                txt: "Javascript Module Pattern"
+            },
+            {
+                url: "https://www.w3schools.com/jsref/dom_obj_event.asp",
+                txt: "Javascript HTML dom Events"
+            },
+            {
+                url: "https://kyu.io/%EC%9B%B9-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B84%E2%80%8A-%E2%80%8Atemplate-element-html-imports/",
+                txt: "No more [Template Element] and [HTML Import]",
+                subtxt: "Information and Opinion"
+            },
+            {
+                url: "https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals",
+                txt: "Template Listerals",
+                subtxt: "to create dynamic dom element, and multiline text: `...`"
+            },
+            {
+                url: "https://unikys.tistory.com/260",
+                txt: "Type Checking",
+                subtxt: "use both, typeof VARIABLE === 'TYPENAME', VARIABLE instanceof VARIABLE",
+                mouseover: {
+                    txt: `
+                        if(typeof s === 'string' || s instanceof String) { <br/>
+                        &nbsp;&nbsp; // ok, s is instance of string <br/>
+                        } <br/>
+                    `
+                }
+            },
+        ]
+    }
+
+    // var _Python = {
+    var _Python = {
+        head: "Python",
+        elems: [
+            {
+                url: "https://docs.python.org/3/tutorial/datastructures.html?highlight=comprehension#tut-listcomps",
+                txt: "Lists Comprehension",
+                mouseover: {
+                    txt: `
+                        examples and equivalents </br>
+                        squares = [x**2 for x in range(10)] </br>
+                        squares = list(map(lambda x: x**2, range(10))) 
+                    `
+                }
+            }
+        ]
+    }
+        
+    // var _Graphics_Vision = {
+    var _Graphics_Vision = {
+        head: "Graphics and Vision",
+        elems: [
+            {
+                url: "https://studiofreya.com/3d-math-and-physics/collision-detection-in-practice/",
+                txt: "Runge Kutta"
+            },
+            {
+                url: "https://gamedev.stackexchange.com/questions/26501/how-does-a-collision-engine-work/26506",
+                txt: "Collision Engine Description"
+            },
+            {
+                url: "https://www.azurefromthetrenches.com/introductory-guide-to-aabb-tree-collision-detection/",
+                txt: "Collision Detection, Voxel Engine, AABB tree"
+            },
+            {
+                url: "http://www.realtimerendering.com/intersections.html",
+                txt: "RealTime Rendering Interaction",
+                subtxt: " lay, sphere, cylinder, polygon, cone, AABB, polyhedron"
+            },
+            {
+                url: "https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/",
+                txt: "Laycasting Tutorial"
+            },
+            {
+                url: "https://gafferongames.com/post/fix_your_timestamp/",
+                txt: "Timestamp for Physics Simulation, Render"
+            },
+            {
+                url: "http://allenchou.net/game-physics-series/",
+                txt: "Game Physics by allenchou"
+            },
+            {
+                url: "https://stackoverflow.com/questions/920829/asynchronous-screen-update-to-gameplay-logic-c",
+                txt: "Seperate Physics and Render Thread",
+                subtxt: " Recommand to use Object Snapshot"
+            },
+            {
+                url: "http://rapapa.net/?p=2419",
+                txt: "Normal Vector, Tangent Vector, Bi-Tangent Vector"
+            },
+            {
+                url: "http://blog.ivank.net/fastest-gaussian-blur.html",
+                txt: "Gaussian Blur Algorithms",
+                subtxt: "including 2-way algorithm"
+            },
+            {
+                url: "https://stackoverflow.com/a/50422672/10384066",
+                txt: "Project Matrix and Camera Calibration",
+                subtxt: "Principal Point"
+            },
+            {
+                url: "https://www.imatest.com/support/docs/pre-5-2/geometric-calibration/distortion-models/",
+                txt: "RadTan Distortion Model"
+            },
+        ]
+    };
+
+    // var _OpenGL = {
+    var _OpenGL = {
+        head: "OpenGL",
+        elems: [
+            {
+                url: "http://wiki.lwjgl.org/index.html",
+                txt: "OpenGL useful Wiki"
+            },
+            {
+                url: "https://www.khronos.org/registry/OpenGL/specs/", 
+                txt: "OpenGL Specification for All of Versions",
+                subtxt: "ps. OpenGL ES 3.2 ≒ OpenGL 4.3 (Compatible)"
+            },
+            {
+                url: undefined,
+                txt: "GL_TEXTURE_EXTERNAL_OES",
+                always: {
+                    list: [
+                        {
+                            url: "https://stackoverflow.com/questions/53865037/whats-the-difference-between-gl-texture-2d-and-gl-texture-external-oes",
+                            txt: "GL_OES_EGL_image_external",
+                            subtxt: `
+                                    <br/>
+                                    Color Space Conversion, Magically Handled by the driver stack.<br/>
+                                    Even if Camera Session output YUV_420 format frame, driver convert it to fit surface's pixel format.<br/>
+                                    Because android surface's pixel format is RGBA_8888, We can get RGBA frame image when call glReadPixels from the Surface.
+                                    `
+                        },
+                        {
+                            url: "https://stackoverflow.com/questions/25618977/how-to-render-to-a-gl-texture-external-oes",
+                            txt: "GLSL example",
+                            subtxt: `<br/>
+                                ㄴ  GL_OES_EGL_image_external<br/>
+                                ㄴ  GL_TEXTURE_EXTERNAL_OES
+                                `
+                        }
+                    ]
+                }
+            },
+            {
+                url: "https://stackoverflow.com/a/20377633",
+                txt: "OpenGL 3+ must need GLSL"
+            },
+            {
+                url: "https://stackoverflow.com/a/54907055",
+                txt: "Camera Lens Distortion in OpenGL"
+            }
+        ]
+    }
+        
+    // var _Mathematics = {
+    var _Mathematics = {
+        head: "Mathematics",
+        elems: [
+            {
+                url: "http://web.mit.edu/wwmath/main.html",
+                txt: "World Web Math. From MIT    "
+            },
+            {
+                url: "https://m.blog.naver.com/PostView.nhn?blogId=gdsolitary&logNo=150171721022&proxyReferer=https%3A%2F%2Fwww.google.com%2F",
+                txt: "Terminology in English"
+            },
+            {
+                url: "https://www.geogebra.org/",
+                txt: "Polt Graph"
+            },
+            {
+                url: "https://www.alanzucconi.com/2015/09/16/how-to-sample-from-a-gaussian-distribution/",
+                txt: "Gaussian Random Number",
+                subtxt: " Normal Distribution"
+            },
+            {
+                url: "http://www.petercollingridge.co.uk/tutorials/computational-geometry/finding-angle-around-ellipse/",
+                txt: "Finding the angle around an ellipse"
+            },
+            {
+                url: "https://www.simply.science/math/geometry/conic-sections/ellipse/10022-eccentric-angle-and-parametric-equations-of-an-ellipse",
+                txt: "Eccentric angle and parametric equations of an ellipse",
+                subtxt: " SimpleScience"
+            },
+            {
+                url: "https://twlab.tistory.com/21?category=668741",
+                txt: "Linear Algebra",
+                subtxt: "Korean"
+            },
+            {
+                url: "http://textbooks.math.gatech.edu/ila/",
+                txt: "Interactive Linear Algebra",
+                subtxt: "Georgia Institure of Tech"
+            },
+            {
+                url: "https://www.ibiblio.org/e-notes/Splines/Intro.htm",
+                txt: "B-spline Interpolation"
+            }
+        ]
+    };
+    
+    // var _Writing = {
+    var _Writing = {
+        head: "Writing",
+        subhead: "Korean",
+        elems: [
+            {
+                url: undefined,
+                txt: "Korean 한국어",
+                elems: [
+                    {
+                        url: "https://post.naver.com/viewer/postView.nhn?volumeNo=9951942&memberNo=24850609",
+                        txt: "글을 간결히 쓰는 법 4가지",
+                        subtxt: ` <br/>
+                                &nbsp; 1. 부사 제거: 대체로, 일반적으로, 아주, 많이 등<br/>
+                                &nbsp; 2. 조사 제거: 이/가, 을/를, 이/가 등<br/>
+                                &nbsp; 3. 인칭대명사 및 지시대명사 반복 제거: 나, 너, 저거 등<br/>
+                                &nbsp; 4. 의존명사 제거: 있다, 수, -적
+                                `
+                    },
+                    {
+                        url: "http://www.bhgoo.com/2011/r_review/604436",
+                        txt: "안정효, 글쓰기만보 감상평"
+                    },
+                    {
+                        url: "https://ppss.kr/archives/28253",
+                        txt: "글 쓰기 팁 5가지",
+                        subtxt: ` <br/>
+                                &nbsp; 1. -것이다. 제거 <br/>
+                                &nbsp; 2. 수동태 오남용 금지: <br/>
+                                &nbsp; 3. 구어체와 문어체: 구어체-> -다. 문어체-> -이다. <br/>
+                                &nbsp; 4. 읽어서 어색한 부분 찾기<br/>
+                                &nbsp; 5. 구두점 남용 금지: . , ! ?
+                                `
+                    },
+                    {
+                        url: "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?&mn_id=84&qna_seq=2500&pageIndex=14401",
+                        txt: "'경우', '-적', '의'",
+                        subtxt: "최대한 줄이기"
+                    },
+                    {
+                        url: "https://books.google.co.kr/books?id=P-UlDwAAQBAJ&pg=PT154&lpg=PT154&dq=적+접미사+대신&source=bl&ots=sOj-yHFrLg&sig=ACfU3U0sN9m5PkawO2XD7M_Ctd66OSmNsA&hl=ko&sa=X&ved=2ahUKEwiSxa346fzkAhWEKqYKHQBMAvwQ6AEwCXoECAcQAQ#v=onepage&q=적%20접미사%20대신&f=false",
+                        txt: "말과 글을 살리는 문법의 힘: 두고두고 찾아보는 한국어 사용 설명서"
+                    }
+                ]
+            },
+            {
+                url: "",
+                txt: "(대안)과 조사",
+                subtxt: `<br/>
+                        &nbsp; 주어(대안)은/는/이/가 <br/>
+                        &nbsp; 목적어(대안)은/는/이/가 <br/>
+                        &nbsp; 주어나 목적어에 맞는 조사 선택
+                        `
+            }
+        ]
+    }
+
+    // var _English = {
+    var _English = {
+        head: "English",
+        elems: [
+            {
+                url: "https://www.thesaurus.com/",
+                txt: "Synonyms and Antonyms"
+            }
+        ],
+    };
+        
+    // var _ETC = {
+    var _ETC = {
+        head: "ETC",
+        elems: [
+            {
+                url: "http://modu-print.tistory.com/category/%EC%82%AC%EC%9A%A9%EC%84%A4%EB%AA%85%EC%84%9C",
+                txt: "모두의 프린터"
+            },
+            {
+                url: "https://osmanias.com/",
+                txt: "오에스 매니아"
+            },
+            {
+                url: "http://asec.ahnlab.com/",
+                txt: "Ahnlab Security Emergency Response Center Blog"
+            },
+            {
+                url: "https://pixlr.com/editor/",
+                txt: "PIXLR EDITOR",
+                subtxt: " Online Photoshop-like Software"
+            },
+            {
+                url: "https://www.knewton.com/the-power-of-altas-adaptive-technology/",
+                txt: "Adaptive Learning Technology",
+                subtxt: " Deep learning Application for adaptive teaching"
+            },
+        ]
+    }
+
+// ------------------------------------------------------------------------------------------------------------------------------
+    var __JSON_SECTION_DATA = {
+            sections: [
+                _GENERAL_COMPUTER_SCIENCE,
+                _MACHINE_LEARNING,
+                _PROGRAMMING_LANGUAGE,
+                _ANDROID,
+                _CMAKE,
+                _C_CPP,
+                _Optimization,
+                _Library,
+                _UI,
+                _UX_Traditional,
+                _Windows,
+                _Ubuntu,
+                _Text_Management,
+                _IDE,
+                _Document_Office,
+                _Git,
+                _Javascript,
+                _Python,
+                _Graphics_Vision,
+                _OpenGL,
+                _Mathematics,
+                _Writing,
+                _English,
+                _ETC
+            ]
+        };
+
+    __main(__JSON_SECTION_DATA);
+
+    </script>    
+</Html>
