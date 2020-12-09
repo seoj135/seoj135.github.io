@@ -909,6 +909,48 @@
             txt: "C++ FAQ",
             subtxt: "use this-> to access template parent's member"
         },
+        {
+            url: "",
+            txt: "&, &&",
+            subtxt: "l-value ref, r-value ref",
+            mouseover: {
+                txt: `
+                    <b>Code</b> <br/>
+                    #include <iostream> <br/>
+                    class A { <br/>
+                    public: <br/>
+                        int v = 0; <br/>
+                        A() { v = 4; } <br/>
+                    }; <br/>
+                    <br/>
+                    // it makes ambiguity with "right ref" <br/>
+                    //void func(A a) { <br/>
+                    //	std::cout << "Copy " << a.v << std::endl; <br/>
+                    //} <br/>
+                    <br/>
+                    void func(A& a) { <br/>
+                        std::cout << "Ref " << a.v << std::endl; <br/>
+                    } <br/>
+                    <br/>
+                    void func(A&& a) { <br/>
+                        std::cout << "Right Ref " << a.v << std::endl; <br/>
+                    } <br/>
+                    <br/>
+                    int main() { <br/>
+                        A a; <br/>
+                        func(a); <br/>
+                        //func(&a); <br/>
+                        func(A()); <br/>
+                    <br/>
+                        return 0; <br/>
+                    } <br/>
+                    <br/>
+                    <b>Output</b> <br/>
+                    Ref 4 <br/>
+                    Right Ref 4 <br/>
+                    `
+            }
+        }
         ]
     };
 
