@@ -1574,6 +1574,28 @@
                 url: "https://software.intel.com/content/www/us/en/develop/articles/opengl-performance-tips-avoid-opengl-calls-that-synchronize-cpu-and-gpu.html",
                 txt: "Tip for sync between cpu and gpu",
                 subtxt: "from intel"
+            },
+            {
+                url: "https://www.khronos.org/opengl/wiki/Common_Mistakes",
+                txt: "OpenGL Common Mistakes",
+                always: {
+                    list: [
+                        {
+                            url: "https://www.khronos.org/opengl/wiki/Common_Mistakes#Slow_pixel_transfer_performance",
+                            txt: "Slow pixel transfer",
+                            subtxt: "RGBA is good on gles, BGRA is better for gl"
+                        },
+                        {
+                            url: "https://www.khronos.org/opengl/wiki/Common_Mistakes#Texture_upload_and_pixel_reads",
+                            txt: "Texture upload and pixel reads",
+                            subtxt: "Alignment: 1, 2, 4, 8 ... = So 3 channel is bad for performance"
+                        },
+                        {
+                            url: "https://www.khronos.org/opengl/wiki/Common_Mistakes#Bad_Array_Size",
+                            txt: "Vertex : Normal : Color = 1 : 1 : 1"
+                        }
+                    ]
+                }
             }
         ]
     }
