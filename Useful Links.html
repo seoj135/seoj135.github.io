@@ -754,7 +754,37 @@
             {
                 url: "https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a",
                 txt: "ARMv8 Neon Guide",
-                subtxt: "SIMD"
+                subtxt: "SIMD",
+                always: {
+                    list: [
+                        {
+                            url: "https://developer.arm.com/documentation/den0018/a/NEON-Intrinsics-Reference",
+                            txt: "Neon intrinsics references"
+                        },
+                        {
+                            url: "https://developer.arm.com/documentation/dui0472/j/Using-NEON-Support/NEON-intrinsics-for-converting-vectors?lang=en",
+                            txt: "Neon intrinsics references",
+                            subtxt: "ARM Compiler armcc User Guide"
+                        }
+                    ]
+                }
+            },
+            {
+                url: "https://developer.arm.com/documentation/102699/0100/Complete-code-listing",
+                txt: "ARM SVE Guide",
+                subtxt: "Next version of Neon",
+                mouseover: {
+                    txt: `
+                        SVE introduces the following key features: <br/>
+                        <ul>
+                            <li>Scalable vectors </li>
+                            <li>Per-lane predication </li>
+                            <li>Gather-load and scatter-store </li>
+                            <li>Speculative vectorization </li>
+                            <li>Horizontal and serialized vector operations </li>
+                        <ul/>
+                    `
+                }
             }
         ]
     };
