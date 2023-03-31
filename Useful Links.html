@@ -1337,6 +1337,17 @@
                 url: "https://github.com/emasab/shelltile/blob/master/README.md",
                 txt: "shelltile",
                 subtxt: "windows Grouping and Edge Tiling, may need tweaks"
+            },
+            {
+                url: "https://www.x.org/releases/X11R7.6/doc/man/man1/Xvfb.1.xhtml",
+                txt: "XVFB, virtual monitor for opengl and headless linux",
+                always: {
+                    list: [
+                        "apt install xvfb",
+                        "Xvfb :0 -screen 0 1024x768x24 &",
+                        "export DISPLAY=:0",
+                    ]
+                }
             }
         ]
     };
