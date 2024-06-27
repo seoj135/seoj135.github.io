@@ -1,78 +1,83 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <Html>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <style>
-        body {
-            font-family: consolas, apple color emoji, segoe ui emoji, segoe ui symbol, noto color emoji;
-        }
-        h3, h5 {
-            display: inline-block;
-            margin-block-start: 3px;
-            margin-block-end: 3px;
-            margin-right: 5px;
-        }
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+    body {
+        font-family: consolas, apple color emoji, segoe ui emoji, segoe ui symbol, noto color emoji;
+    }
 
-        ul {
-            display: inline-block;
-            /* padding: 0px; */
-            margin: 0px;
-        }
+    h3,
+    h5 {
+        display: inline-block;
+        margin-block-start: 3px;
+        margin-block-end: 3px;
+        margin-right: 5px;
+    }
 
-        .subhead {
-            margin-left: 3px;
-        }
+    ul {
+        display: inline-block;
+        /* padding: 0px; */
+        margin: 0px;
+    }
 
-        .fake_a {
-            color: blue;
-            margin-right: 0px;
-            cursor: pointer;
-        }
-        .fake_a:hover .mouse_over_only {
-            display: block;
-            margin-right: 0px;
-        }
-        .fake_a span {
-            color: black;
-        }
-        .fake_a span.subtxt {
-            cursor: default;
-            margin-left: 2px;
-        }
+    .subhead {
+        margin-left: 3px;
+    }
 
-        .mouse_over_only {
-            display: none;
-            margin-right: 0px;
-            text-decoration: none !important;
-            color: black;
-            cursor: text;
-        }
+    .fake_a {
+        color: blue;
+        margin-right: 0px;
+        cursor: pointer;
+    }
 
-        .go_to_top {
-            vertical-align: bottom;
-            padding-bottom: 4px;
-            cursor: pointer;
-        }
+    .fake_a:hover .mouse_over_only {
+        display: block;
+        margin-right: 0px;
+    }
 
-        .index_a {
-            margin-top: 2px;
-            display: inline-block;
-        }
-    </style>
+    .fake_a span {
+        color: black;
+    }
 
-    <script type="text/javascript">
+    .fake_a span.subtxt {
+        cursor: default;
+        margin-left: 2px;
+    }
+
+    .mouse_over_only {
+        display: none;
+        margin-right: 0px;
+        text-decoration: none !important;
+        color: black;
+        cursor: text;
+    }
+
+    .go_to_top {
+        vertical-align: bottom;
+        padding-bottom: 4px;
+        cursor: pointer;
+    }
+
+    .index_a {
+        margin-top: 2px;
+        display: inline-block;
+    }
+</style>
+
+<script type="text/javascript">
     var binary_data = "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";
-    </script>
+</script>
 
-    <div id="body">
-        
-    </div>
+<div id="body">
 
-    <script type="text/javascript">
+</div>
+
+<script type="text/javascript">
     // -------------------------------------------------------------
     // Utils
     // -------------------------------------------------------------
     function openLink(link) {
-        switch(event.target.className) {
+        switch (event.target.className) {
             case "fake_a":
                 break;
             case "subtxt":
@@ -103,7 +108,7 @@
         _body.insertAdjacentHTML("beforeend", base);
 
         var _index = document.getElementById(indexID);
-        for(var i=0; i<sections.length; i++) {
+        for (var i = 0; i < sections.length; i++) {
             var section = sections[i];
             var head = section.head;
             const row = `<span class="fake_a index_a" onclick="location.href='#${head}'">${head}</span><br/>`
@@ -117,20 +122,20 @@
         var sections = data.sections;
         genIndex(sections);
 
-        for(var i=0; i<sections.length; i++) {
+        for (var i = 0; i < sections.length; i++) {
             attachSection(sections[i]);
             _body.insertAdjacentHTML("beforeend", "<br/><br/>");
         }
     }
 
-    function attachSection(section) {       
+    function attachSection(section) {
         var head = section.head;
         const T_sectionHead = `<h3 id="${head}">${head}</h3>`;
         _body.insertAdjacentHTML("beforeend", T_sectionHead);
 
         var subhead = section.subhead;
         const T_sectionSubHead = `<h5 class='subhead'>${subhead}</h5>`;
-        if(subhead != null && subhead != undefined) {
+        if (subhead != null && subhead != undefined) {
             _body.insertAdjacentHTML("beforeend", T_sectionSubHead);
         }
 
@@ -141,28 +146,28 @@
         _body.insertAdjacentHTML("beforeend", `<br/>`);
 
         var elems = section.elems;
-        for(var i=0; i<elems.length; i++) {
+        for (var i = 0; i < elems.length; i++) {
             attachSectionElem(elems[i]);
         }
     }
 
     function attachSectionElem(elem) {
         var T_mouseover = "";
-        if(elem.mouseover != undefined) {
-            if(elem.mouseover.list != undefined) {
+        if (elem.mouseover != undefined) {
+            if (elem.mouseover.list != undefined) {
                 var list = attachSectionListElem(elem.mouseover.list, false);
                 T_mouseover = `<div class="mouse_over_only">${list}</div>`
-            } else if(elem.mouseover.txt != undefined) {
+            } else if (elem.mouseover.txt != undefined) {
                 var txt = elem.mouseover.txt;
                 T_mouseover = `<div class="mouse_over_only">${txt}</div>`
             }
         }
 
-        if(elem.url != undefined) {
+        if (elem.url != undefined) {
             var url = elem.url;
             var txt = elem.txt == undefined ? "" : elem.txt;
             var subtxt = elem.subtxt == undefined ? "" : elem.subtxt;
-            const T_section = 
+            const T_section =
                 `<span class="fake_a" onclick="openLink('${url}')">${txt}<span class="subtxt"> ${subtxt}</span><br>${T_mouseover}</span>`;
             _body.insertAdjacentHTML("beforeend", T_section);
         } else {
@@ -173,23 +178,23 @@
             attachSectionListElem(elem.elems);
         }
 
-        if(elem.always != undefined) {
+        if (elem.always != undefined) {
             attachSectionListElem(elem.always.list);
         }
     }
 
-    function attachSectionListElem(lists, append=true) {
-        if(lists == undefined) return;
+    function attachSectionListElem(lists, append = true) {
+        if (lists == undefined) return;
 
         var _li = "";
-        for(var i=0; i<lists.length; i++) {
+        for (var i = 0; i < lists.length; i++) {
             var elem = lists[i];
             var T_mouseover = "";
-            if(elem.mouseover != undefined) {
-                if(elem.mouseover.list != undefined) {
+            if (elem.mouseover != undefined) {
+                if (elem.mouseover.list != undefined) {
                     var list = attachSectionListElem(elem.mouseover.list, false);
                     T_mouseover = `<div class="mouse_over_only">${list}</div>`
-                } else if(elem.mouseover.txt != undefined) {
+                } else if (elem.mouseover.txt != undefined) {
                     var txt = elem.mouseover.txt;
                     T_mouseover = `<div class="mouse_over_only">${txt}</div>`
                 }
@@ -199,7 +204,7 @@
             var txt = elem.txt;
             var subtxt = elem.subtxt == undefined ? "" : elem.subtxt;
 
-            if(url == undefined && txt == undefined) {
+            if (url == undefined && txt == undefined) {
                 _li += `<li>${elem}</li>`;
             } else {
                 _li += `<li><span class="fake_a" onclick="openLink('${url}')">${txt}<span class="subtxt"> ${subtxt}</span><br>${T_mouseover}</span></li>`;
@@ -207,9 +212,9 @@
         }
         const T_lists = `<ul>${_li}</ul>`;
 
-        if(append) {
+        if (append) {
             _body.insertAdjacentHTML("beforeend", `${T_lists} <br>`);
-        } 
+        }
         return T_lists;
     }
 
@@ -565,7 +570,7 @@
                             txt: "Programming Language Design and Implementation ",
                             subtxt: "PLDI"
                         },
-                        {   
+                        {
                             url: "http://www.oopsla.org/oopsla2008/",
                             txt: "Object-Oriented Programming, Systems, Languages, and Applications ",
                             subtxt: "OOPSLA"
@@ -821,7 +826,7 @@
             }
         ]
     };
-     
+
     // var _CMAKE = {
     var _CMAKE = {
         head: "CMAKE",
@@ -846,8 +851,8 @@
                     {
                         url: "https://cmake.org/cmake/help/v3.16/manual/cmake-packages.7.html",
                         txt: "Package Registry",
-                        subtxt: 
-                                `<br/>
+                        subtxt:
+                            `<br/>
                                 HKEY_CURRENT_USER\\Software\\Kitware\\CMake\\Packages\\<PackageName>  :Windows User Package Registry
                                 <br/>
                                 HKEY_LOCAL_MACHINE\\Software\\Kitware\\CMake\\Packages\\<PackageName>  :Windows System Package Registry
@@ -892,7 +897,7 @@
             }
         ]
     };
-        
+
     // var _C_CPP = {
     var _C_CPP = {
         head: "C/C++",
@@ -925,7 +930,7 @@
             url: "https://www.cprogramming.com/reference/preprocessor/token-pasting-operator.html",
             txt: "Token Pasting Operater",
             subtxt: "##",
-            mouseover: { 
+            mouseover: {
                 txt: `#define type i##nt <br/>
                     type a; // same as int a; since i##nt pastes together to "int"`
             }
@@ -1108,9 +1113,9 @@
     };
 
     // var _Optimization = {
-    var _Optimization =  {
+    var _Optimization = {
         head: "Optimization",
-        
+
         elems: [
             {
                 url: "https://stackoverflow.com/questions/14561402/how-is-this-size-alignment-working",
@@ -1185,7 +1190,7 @@
             }
         ]
     };
-        
+
     // var _Library = {
     var _Library = {
         head: "Library",
@@ -1216,7 +1221,7 @@
             {
                 url: "https://iconmonstr.com/",
                 txt: "IconMonstr, free on germany"
-            },            
+            },
             {
                 url: "https://www.iconfinder.com/",
                 txt: "IconFinder"
@@ -1242,85 +1247,85 @@
         head: "UX, traditional UserExperience",
 
         elems: [{
-                url: "https://www.computerhope.com/tips/tip32.htm",
-                txt: "Top 10 Mouse UX, protips",
-                subtxt: "Shift+Scrolling: to scroll horizontally"
-            },
+            url: "https://www.computerhope.com/tips/tip32.htm",
+            txt: "Top 10 Mouse UX, protips",
+            subtxt: "Shift+Scrolling: to scroll horizontally"
+        },
         ]
     }
-        
+
     // var _Windows = {
     var _Windows = {
         head: "Windows",
 
         elems: [{
-                url: "https://www.askvg.com/tip-customize-start-screen-tiles-background-color-text-color-and-logo-in-windows-8-1/",
-                txt: "Suppot General App for UWP Visual Option",
-                subtxt: " visualElementsManifest.xml"
-            },
-            {
-                url: "https://ss64.com/nt/",
-                txt: "Batch Command Doc"
-            }
-            ,{
-                url: "https://docs.microsoft.com/ko-kr/windows/wsl/install-win10",
-                txt: "Linux Subsystem for Window 10",
-                subtxt: `
+            url: "https://www.askvg.com/tip-customize-start-screen-tiles-background-color-text-color-and-logo-in-windows-8-1/",
+            txt: "Suppot General App for UWP Visual Option",
+            subtxt: " visualElementsManifest.xml"
+        },
+        {
+            url: "https://ss64.com/nt/",
+            txt: "Batch Command Doc"
+        }
+            , {
+            url: "https://docs.microsoft.com/ko-kr/windows/wsl/install-win10",
+            txt: "Linux Subsystem for Window 10",
+            subtxt: `
                         too change root password: sudo su<br/>
                         &nbsp; access windows file system: /mnt
                     `
-            },
-            {
-                url: "https://cmatskas.com/generate-ascii-folder-structures-for-windows-with-tree/",
-                txt: "tree command",
-                subtxt: "print Directory Structure as text, on Windows",
-                always: {
-                    list: [
-                        `. <br/>
+        },
+        {
+            url: "https://cmatskas.com/generate-ascii-folder-structures-for-windows-with-tree/",
+            txt: "tree command",
+            subtxt: "print Directory Structure as text, on Windows",
+            always: {
+                list: [
+                    `. <br/>
                         ├─folder 1 <br/>
                         │  ├─a <br/>
                         │  └─b <br/>
                         ├─folder 2 <br/>
                         └─folder 3 <br/>
                         `
-                    ]
-                }
-            },
-            {
-                url: "https://www.tenforums.com/tutorials/35493-change-copy-name-extension-template-windows.html",
-                txt: "windows explorer CopyNameTemplate",
-                subtxt: "file.ext -> file - 복사본 (2).ext → file.ext -> file (2).ext"
-            },
-            {
-                url: "https://stackoverflow.com/a/13654421",
-                txt: "Windows which equivalent: where.exe",
-                subtxt: "set-alias which where.exe, is useful, in powershell"
-            },
-            {
-                url: "https://github.com/leafOfTree/WindowTabs/releases/tag/v2019.7.9",
-                txt: "WindowTabs",
-                subtxt: "Tabs, Browser Style for all apps in Windows"
-            },
-            {
-                url: "http://www.brianapps.net/",
-                txt: "Sizer 4.0",
-                subtxt: "Adjust window size"
-            },
-            {
-                url: "https://www.snipaste.com",
-                txt: "Snipaste",
-                subtxt: "Greatest snipping tool"
-            },
-            {
-                url: "https://nastytester.com/posts/script-that-works-in-windows-and-linux.html",
-                txt: "Cross-platform shell script",
-                subtext: "Batch and Bash, .cmd"
-            },
-            {
-                url: "https://www.lainyzine.com/ko/article/how-to-disable-windows-automatic-updates-on-windows-10/",
-                txt: "Windows autoupdate disabling",
-                subtxt: "service.msc and gpedit.msc"
+                ]
             }
+        },
+        {
+            url: "https://www.tenforums.com/tutorials/35493-change-copy-name-extension-template-windows.html",
+            txt: "windows explorer CopyNameTemplate",
+            subtxt: "file.ext -> file - 복사본 (2).ext → file.ext -> file (2).ext"
+        },
+        {
+            url: "https://stackoverflow.com/a/13654421",
+            txt: "Windows which equivalent: where.exe",
+            subtxt: "set-alias which where.exe, is useful, in powershell"
+        },
+        {
+            url: "https://github.com/leafOfTree/WindowTabs/releases/tag/v2019.7.9",
+            txt: "WindowTabs",
+            subtxt: "Tabs, Browser Style for all apps in Windows"
+        },
+        {
+            url: "http://www.brianapps.net/",
+            txt: "Sizer 4.0",
+            subtxt: "Adjust window size"
+        },
+        {
+            url: "https://www.snipaste.com",
+            txt: "Snipaste",
+            subtxt: "Greatest snipping tool"
+        },
+        {
+            url: "https://nastytester.com/posts/script-that-works-in-windows-and-linux.html",
+            txt: "Cross-platform shell script",
+            subtext: "Batch and Bash, .cmd"
+        },
+        {
+            url: "https://www.lainyzine.com/ko/article/how-to-disable-windows-automatic-updates-on-windows-10/",
+            txt: "Windows autoupdate disabling",
+            subtxt: "service.msc and gpedit.msc"
+        }
         ]
     };
 
@@ -1395,7 +1400,7 @@
             }
         ]
     };
-        
+
     // var _Text_Management = {
     var _Text_Management = {
         head: "Text Management",
@@ -1473,7 +1478,7 @@
                 url: "https://radreads.co/the-top-notion-tips-tricks-and-keyboard-shortcuts/",
                 txt: "Notion, keyboard shortcuts",
                 always: {
-                    list: [ 
+                    list: [
                         "toggle button: ctrl+Enter",
                     ]
                 }
@@ -1493,7 +1498,7 @@
             },
         ]
     }
-        
+
     // var _Git = {
     var _Git = {
         head: "Git",
@@ -1526,7 +1531,7 @@
             },
             {
                 url: "https://stackoverflow.com/a/18278072",
-                txt: "Pre-commit, windows use ported bash", 
+                txt: "Pre-commit, windows use ported bash",
                 subtxt: "so doesn't need .bat script"
             },
             {
@@ -1557,7 +1562,7 @@
             }
         ]
     };
-        
+
     // var _Javascript = {
     var _Javascript = {
         head: "Javascript",
@@ -1616,7 +1621,7 @@
             }
         ]
     }
-        
+
     // var _Graphics_Vision = {
     var _Graphics_Vision = {
         head: "Graphics and Vision",
@@ -1772,7 +1777,7 @@
                 txt: "OpenGL useful Wiki"
             },
             {
-                url: "https://www.khronos.org/registry/OpenGL/specs/", 
+                url: "https://www.khronos.org/registry/OpenGL/specs/",
                 txt: "OpenGL Specification for All of Versions",
                 subtxt: "ps. OpenGL ES 3.2 ≒ OpenGL 4.3 (Compatible)"
             },
@@ -1857,7 +1862,7 @@
             }
         ]
     }
-        
+
     // var _Mathematics = {
     var _Mathematics = {
         head: "Mathematics",
@@ -1992,7 +1997,7 @@
             }
         ]
     };
-    
+
     // var _Writing = {
     var _Writing = {
         head: "Writing",
@@ -2072,7 +2077,7 @@
             }
         ],
     };
-        
+
     // var _ETC = {
     var _ETC = {
         head: "ETC",
@@ -2102,38 +2107,39 @@
         ]
     }
 
-// ------------------------------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------------------------------
     var __JSON_SECTION_DATA = {
-            sections: [
-                _GENERAL_COMPUTER_SCIENCE,
-                _MACHINE_LEARNING,
-                _DATASET,
-                _PROGRAMMING_LANGUAGE,
-                _ANDROID,
-                _CMAKE,
-                _C_CPP,
-                _Optimization,
-                _Library,
-                _UI,
-                _UX_Traditional,
-                _Windows,
-                _Ubuntu,
-                _Text_Management,
-                _IDE,
-                _Document_Office,
-                _Git,
-                _Javascript,
-                _Python,
-                _Graphics_Vision,
-                _OpenGL,
-                _Mathematics,
-                _Writing,
-                _English,
-                _ETC
-            ]
-        };
+        sections: [
+            _GENERAL_COMPUTER_SCIENCE,
+            _MACHINE_LEARNING,
+            _DATASET,
+            _PROGRAMMING_LANGUAGE,
+            _ANDROID,
+            _CMAKE,
+            _C_CPP,
+            _Optimization,
+            _Library,
+            _UI,
+            _UX_Traditional,
+            _Windows,
+            _Ubuntu,
+            _Text_Management,
+            _IDE,
+            _Document_Office,
+            _Git,
+            _Javascript,
+            _Python,
+            _Graphics_Vision,
+            _OpenGL,
+            _Mathematics,
+            _Writing,
+            _English,
+            _ETC
+        ]
+    };
 
     __main(__JSON_SECTION_DATA);
 
-    </script>    
+</script>
+
 </Html>
