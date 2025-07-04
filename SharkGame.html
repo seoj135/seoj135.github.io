@@ -3,15 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shark Roulette Game v0.5</title>
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7091953613763690" crossorigin="anonymous"></script>
-    <title>Shark Roulette Game v0.3</title>
     <style>
         body {
             margin: 0;
-            padding: 10px;
+            padding: 0;
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #1e3c72, #2a5298);
             color: white;
+        }
+        
+        /* Banner Ad Header */
+        .banner-header {
+            width: 100%;
+            height: 90px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-bottom: 3px solid #3498db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner-content {
+            text-align: center;
+            z-index: 2;
+            width: 100%;
+            max-width: 728px;
+            margin: 0 auto;
+        }
+        
+        /* AdSense responsive styling */
+        .adsbygoogle {
+            display: block;
+            min-height: 50px;
+        }
+        
+        .banner-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        @media (max-width: 767px) {
+            .banner-header {
+                height: 70px;
+            }
+            .banner-content {
+                max-width: 320px;
+            }
+        }
+        
+        .main-content {
+            padding: 10px;
         }
         
         .game-container {
@@ -25,7 +83,7 @@
         }
         
         @media (min-width: 768px) {
-            body {
+            .main-content {
                 padding: 20px;
             }
             .game-container {
@@ -276,83 +334,99 @@
     </style>
 </head>
 <body>
-    <div class="game-container">
-        <h1 style="text-align: center; margin-bottom: 30px; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-            🦈 Shark Roulette Game v0.3 🏊‍♂️
-        </h1>
-        
-        <div class="version-info">
-            <strong>NEW in v0.3:</strong> ⚡ Faster-paced action! Sharks now eat for only 1 second (reduced from 2 seconds) - less waiting, more thrills!
+    <!-- Banner Ad Header -->
+    <div class="banner-header">
+        <div class="banner-content">
+            <!-- AdSense Banner Ad -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7091953613763690"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
-        
-        <div class="controls">
-            <div class="control-group">
-                <label>Survivors (Name*Count, Name*Count, ...):</label>
-                <textarea id="survivorsInput" placeholder="Alice*3, Bob*2, Charlie*4">Alice*3, Bob*2, Charlie*4</textarea>
+    </div>
+
+    <div class="main-content">
+        <div class="game-container">
+            <h1 style="text-align: center; margin-bottom: 30px; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                🦈 Shark Roulette Game v0.5 🏊‍♂️
+            </h1>
+            
+            <div class="version-info">
+                <strong>NEW in v0.5:</strong> 💰 Google AdSense Integration! 🌀 Whirlpool Teleport - Stay in center for 3s to teleport! ❌ Removed Jump Pads for cleaner gameplay!
             </div>
             
-            <div class="control-group">
-                <label>Number of Sharks:</label>
-                <input type="number" id="sharksInput" min="1" max="10" value="2">
+            <div class="controls">
+                <div class="control-group">
+                    <label>Survivors (Name*Count, Name*Count, ...):</label>
+                    <textarea id="survivorsInput" placeholder="Alice*3, Bob*2, Charlie*4">Alice*3, Bob*2, Charlie*4</textarea>
+                </div>
+                
+                <div class="control-group">
+                    <label>Number of Sharks:</label>
+                    <input type="number" id="sharksInput" min="1" max="10" value="2">
+                </div>
+                
+                <button id="startBtn">Start Game</button>
+                <button id="resetBtn">Reset</button>
             </div>
             
-            <button id="startBtn">Start Game</button>
-            <button id="resetBtn">Reset</button>
-        </div>
-        
-        <canvas id="gameCanvas" width="800" height="500"></canvas>
-        
-        <div class="game-info">
-            <div id="gameStatus" class="status">Enter survivors and click Start Game</div>
-            <div id="winnerAnnouncement" class="winner-announcement" style="display: none;"></div>
-            <div id="survivorCount">Survivors: 0</div>
-            <div id="sharkCount">Sharks: 0</div>
+            <canvas id="gameCanvas" width="800" height="500"></canvas>
             
-            <div class="legend">
-                <div class="legend-item">
-                    <div class="legend-color" style="background: linear-gradient(45deg, #4CAF50, #2196F3, #FF9800, #E91E63);"></div>
-                    <span>Survivors (Color by Name)</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background-color: #4CAF50; border: 3px solid #FFC107;"></div>
-                    <span>Boosted (Golden Glow)</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background-color: #696969;"></div>
-                    <span>Normal Shark (Grey)</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background-color: #2F2F2F;"></div>
-                    <span>Rushing Shark (Dark Grey)</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background-color: #2F4F4F;"></div>
-                    <span>Eating Shark (Slate Grey)</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background-color: #FF00FF; border: 2px dashed #fff;"></div>
-                    <span>🔮 Edge Warning</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background-color: #00FFFF; border: 2px dashed #fff;"></div>
-                    <span>🌀 Swirl Zone</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background-color: #FFA500; border: 2px dashed #fff;"></div>
-                    <span>↗ Jump Zone</span>
+            <div class="game-info">
+                <div id="gameStatus" class="status">Enter survivors and click Start Game</div>
+                <div id="winnerAnnouncement" class="winner-announcement" style="display: none;"></div>
+                <div id="survivorCount">Survivors: 0</div>
+                <div id="sharkCount">Sharks: 0</div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(45deg, #4CAF50, #2196F3, #FF9800, #E91E63);"></div>
+                        <span>Survivors (Color by Name)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #4CAF50; border: 3px solid #FFC107;"></div>
+                        <span>Boosted (Golden Glow)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #696969;"></div>
+                        <span>Normal Shark (Grey)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #2F2F2F;"></div>
+                        <span>Rushing Shark (Dark Grey)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #2F4F4F;"></div>
+                        <span>Eating Shark (Slate Grey)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #FF00FF; border: 2px dashed #fff;"></div>
+                        <span>🔮 Edge Teleport Warning</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #00FFFF; border: 2px solid #fff;"></div>
+                        <span>🌀 Whirlpool (3s Center = Teleport)</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="instructions">
-            <strong>How to Play:</strong><br>
-            • Enter survivors in format: Name*Count (e.g., "Alice*3, Bob*2")<br>
-            • Survivors try to escape sharks. Last one standing wins!<br>
-            • Sharks spawn after 3 seconds and hunt survivors<br>
-            • <strong>💀 Rare Shark Rush:</strong> Sharks occasionally rush at 15x speed with terrifying effects<br>
-            • <strong>🍽️ ⚡ FASTER EATING (v0.3):</strong> Sharks now stop for only 1 second when eating (was 2 seconds) - more intense action!<br>
-            • <strong>🌀 Special Zones:</strong> Cyan swirls spin you around, orange circles teleport you<br>
-            • Game auto-resets after winner is announced
+            
+            <div class="instructions">
+                <strong>How to Play:</strong><br>
+                • Enter survivors in format: Name*Count (e.g., "Alice*3, Bob*2")<br>
+                • Survivors try to escape sharks. Last one standing wins!<br>
+                • Sharks spawn after 3 seconds and hunt survivors<br>
+                • <strong>💀 Rare Shark Rush:</strong> Sharks occasionally rush at 15x speed with terrifying effects<br>
+                • <strong>🍽️ ⚡ FAST EATING:</strong> Sharks stop for only 1 second when eating<br>
+                • <strong>🌀 NEW: Whirlpool Teleportation (v0.5):</strong> Stay in the center of a whirlpool for 3 seconds to teleport to a random location!<br>
+                • <strong>✨ Enhanced Edge Teleportation:</strong> Flash effects and random destinations across the map!<br>
+                • <strong>💰 NEW: Google AdSense Integration (v0.5):</strong> Real advertisements support the game development!<br>
+                • Game auto-resets after winner is announced
+            </div>
         </div>
     </div>
 
@@ -367,11 +441,11 @@
                 this.gameStartTime = 0;
                 this.sharksSpawned = false;
                 this.winner = null;
-                this.swirls = [];
-                this.jumpZones = [];
+                this.whirlpools = [];
                 this.winnerDisplayTimer = 0;
                 this.screenShake = 0;
                 this.rushParticles = [];
+                this.teleportEffects = [];
                 
                 this.setupEventListeners();
                 this.adjustCanvasSize();
@@ -408,32 +482,40 @@
             }
             
             generateZones() {
-                this.swirls = [];
-                this.jumpZones = [];
-                const allZones = [];
+                this.whirlpools = [];
                 
-                // Generate 3-5 swirl zones (non-overlapping)
-                const swirlCount = Math.floor(Math.random() * 3) + 3;
-                for (let i = 0; i < swirlCount; i++) {
+                // Generate 3-5 whirlpools (non-overlapping)
+                const whirlpoolCount = Math.floor(Math.random() * 3) + 3;
+                for (let i = 0; i < whirlpoolCount; i++) {
                     let attempts = 0;
                     let validPosition = false;
-                    let newSwirl;
+                    let newWhirlpool;
                     
                     while (!validPosition && attempts < 50) {
-                        newSwirl = {
-                            x: Math.random() * (this.canvas.width - 120) + 60,
-                            y: Math.random() * (this.canvas.height - 120) + 60,
-                            radius: Math.random() * 30 + 40,
-                            strength: Math.random() * 0.1 + 0.05,
-                            rotation: 0
+                        newWhirlpool = {
+                            x: Math.random() * (this.canvas.width - 140) + 70,
+                            y: Math.random() * (this.canvas.height - 140) + 70,
+                            radius: Math.random() * 30 + 50,
+                            centerRadius: 15, // Center zone for teleportation
+                            rotation: 0,
+                            spiralArms: []
                         };
                         
+                        // Generate spiral arms for visual effect
+                        for (let arm = 0; arm < 3; arm++) {
+                            newWhirlpool.spiralArms.push({
+                                baseAngle: (arm / 3) * Math.PI * 2,
+                                particles: []
+                            });
+                        }
+                        
                         validPosition = true;
-                        for (let zone of allZones) {
-                            const dx = newSwirl.x - zone.x;
-                            const dy = newSwirl.y - zone.y;
+                        for (let j = 0; j < this.whirlpools.length; j++) {
+                            const existing = this.whirlpools[j];
+                            const dx = newWhirlpool.x - existing.x;
+                            const dy = newWhirlpool.y - existing.y;
                             const distance = Math.sqrt(dx * dx + dy * dy);
-                            const minDistance = newSwirl.radius + zone.radius + 20;
+                            const minDistance = newWhirlpool.radius + existing.radius + 30;
                             
                             if (distance < minDistance) {
                                 validPosition = false;
@@ -444,45 +526,7 @@
                     }
                     
                     if (validPosition) {
-                        this.swirls.push(newSwirl);
-                        allZones.push(newSwirl);
-                    }
-                }
-                
-                // Generate 2-4 jump zones (non-overlapping)
-                const jumpCount = Math.floor(Math.random() * 3) + 2;
-                for (let i = 0; i < jumpCount; i++) {
-                    let attempts = 0;
-                    let validPosition = false;
-                    let newJump;
-                    
-                    while (!validPosition && attempts < 50) {
-                        newJump = {
-                            x: Math.random() * (this.canvas.width - 100) + 50,
-                            y: Math.random() * (this.canvas.height - 100) + 50,
-                            radius: Math.random() * 20 + 25,
-                            cooldown: 0,
-                            pulse: 0
-                        };
-                        
-                        validPosition = true;
-                        for (let zone of allZones) {
-                            const dx = newJump.x - zone.x;
-                            const dy = newJump.y - zone.y;
-                            const distance = Math.sqrt(dx * dx + dy * dy);
-                            const minDistance = newJump.radius + zone.radius + 20;
-                            
-                            if (distance < minDistance) {
-                                validPosition = false;
-                                break;
-                            }
-                        }
-                        attempts++;
-                    }
-                    
-                    if (validPosition) {
-                        this.jumpZones.push(newJump);
-                        allZones.push(newJump);
+                        this.whirlpools.push(newWhirlpool);
                     }
                 }
             }
@@ -504,6 +548,7 @@
                 this.sharksSpawned = false;
                 this.winner = null;
                 this.winnerDisplayTimer = 0;
+                this.teleportEffects = [];
                 
                 document.getElementById('startBtn').disabled = true;
                 document.getElementById('gameStatus').textContent = 'Game Started! Sharks spawning in 3 seconds...';
@@ -558,7 +603,7 @@
             spawnSurvivors() {
                 this.survivors.forEach(survivor => {
                     // Spawn randomly on the lake with stricter boundaries
-                    const margin = survivor.size + 10; // Increased margin
+                    const margin = survivor.size + 10;
                     survivor.x = Math.random() * (this.canvas.width - 2 * margin) + margin;
                     survivor.y = Math.random() * (this.canvas.height - 2 * margin) + margin;
                     survivor.vx = (Math.random() - 0.5) * 2;
@@ -571,7 +616,7 @@
                 for (let i = 0; i < count; i++) {
                     const shark = new Shark();
                     // Spawn randomly on the lake with stricter boundaries
-                    const margin = shark.size * 1.5 + 10; // Account for realistic shark size
+                    const margin = shark.size * 1.5 + 10;
                     shark.x = Math.random() * (this.canvas.width - 2 * margin) + margin;
                     shark.y = Math.random() * (this.canvas.height - 2 * margin) + margin;
                     shark.vx = (Math.random() - 0.5) * 2;
@@ -589,6 +634,7 @@
                 this.winnerDisplayTimer = 0;
                 this.screenShake = 0;
                 this.rushParticles = [];
+                this.teleportEffects = [];
                 this.generateZones(); // Generate new zones
                 document.getElementById('startBtn').disabled = false;
                 document.getElementById('gameStatus').textContent = 'Enter survivors and click Start Game';
@@ -614,19 +660,43 @@
                         return particle.life > 0;
                     });
                     
-                    // Update zones
-                    this.swirls.forEach(swirl => {
-                        swirl.rotation += 0.1;
+                    // Update teleport effects
+                    this.teleportEffects = this.teleportEffects.filter(effect => {
+                        effect.life--;
+                        effect.alpha = effect.life / effect.maxLife;
+                        effect.scale = 1 + (1 - effect.alpha) * 2;
+                        return effect.life > 0;
                     });
                     
-                    this.jumpZones.forEach(zone => {
-                        if (zone.cooldown > 0) zone.cooldown--;
-                        zone.pulse += 0.2;
+                    // Update whirlpools
+                    this.whirlpools.forEach(whirlpool => {
+                        whirlpool.rotation += 0.05;
+                        
+                        // Update spiral arms
+                        whirlpool.spiralArms.forEach(arm => {
+                            // Add particles to spiral arms occasionally
+                            if (Math.random() < 0.1) {
+                                arm.particles.push({
+                                    distance: whirlpool.radius,
+                                    angle: arm.baseAngle + whirlpool.rotation,
+                                    life: 60,
+                                    maxLife: 60
+                                });
+                            }
+                            
+                            // Update existing particles
+                            arm.particles = arm.particles.filter(particle => {
+                                particle.distance -= 1;
+                                particle.angle += 0.1;
+                                particle.life--;
+                                return particle.life > 0 && particle.distance > 5;
+                            });
+                        });
                     });
                     
                     // Update survivors
                     this.survivors.forEach(survivor => {
-                        survivor.update(this.sharks, this.swirls, this.jumpZones, this.canvas.width, this.canvas.height);
+                        survivor.update(this.sharks, this.whirlpools, this.canvas.width, this.canvas.height, this.teleportEffects);
                     });
                     
                     // Handle survivor collisions to prevent overlapping
@@ -662,7 +732,7 @@
                         if (shark.eating && !shark.wasRushingWhenEating) {
                             // Add moderate screen shake for normal eating
                             if (Math.random() < 0.3) {
-                                this.screenShake = Math.max(this.screenShake, 6); // Less intense than rushing
+                                this.screenShake = Math.max(this.screenShake, 6);
                             }
                             
                             // Create splash particles for normal eating
@@ -676,7 +746,7 @@
                                     maxLife: 20,
                                     alpha: 1,
                                     size: Math.random() * 3 + 1,
-                                    color: 'splash' // Different color for normal eating
+                                    color: 'splash'
                                 });
                             }
                         }
@@ -712,14 +782,14 @@
                     if (this.survivors.length === 1) {
                         this.gameRunning = false;
                         this.winner = this.survivors[0];
-                        this.winnerDisplayTimer = 180; // 3 seconds display
+                        this.winnerDisplayTimer = 180;
                         document.getElementById('gameStatus').textContent = 'Game Over!';
                         document.getElementById('winnerAnnouncement').textContent = `🏆 ${this.winner.name} #${this.winner.number} WINS! 🏆`;
                         document.getElementById('winnerAnnouncement').style.display = 'block';
                     } else if (this.survivors.length === 0) {
                         this.gameRunning = false;
                         this.winner = { name: 'Sharks', number: '' };
-                        this.winnerDisplayTimer = 180; // 3 seconds display
+                        this.winnerDisplayTimer = 180;
                         document.getElementById('gameStatus').textContent = 'Game Over!';
                         document.getElementById('winnerAnnouncement').textContent = '🦈 Sharks Win! No survivors left! 🦈';
                         document.getElementById('winnerAnnouncement').style.display = 'block';
@@ -730,7 +800,6 @@
                 if (this.winner && this.winnerDisplayTimer > 0) {
                     this.winnerDisplayTimer--;
                     if (this.winnerDisplayTimer === 0) {
-                        // Auto-reset but don't auto-start
                         this.resetGame();
                     }
                 }
@@ -752,12 +821,12 @@
                         const dy = survivor.y - shark.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
                         
-                        // Account for realistic shark size - both normal and rushing sharks can eat
+                        // Account for realistic shark size
                         if (distance < shark.size * 1.5 + survivor.size) {
                             // Trigger appropriate eating animation based on shark state
                             const isRushing = shark.rushing;
                             shark.startEating(isRushing);
-                            console.log(`${isRushing ? 'Rushing' : 'Normal'} shark caught survivor! Starting ${isRushing ? 'violent' : 'standard'} eating animation (v0.3 - faster!).`);
+                            console.log(`${isRushing ? 'Rushing' : 'Normal'} shark caught survivor! Starting ${isRushing ? 'violent' : 'standard'} eating animation (v0.5 - whirlpool teleport!).`);
                             
                             // Remove survivor
                             this.survivors.splice(i, 1);
@@ -777,7 +846,7 @@
                         const dx = survivor1.x - survivor2.x;
                         const dy = survivor1.y - survivor2.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
-                        const minDistance = survivor1.size + survivor2.size + 2; // Small buffer
+                        const minDistance = survivor1.size + survivor2.size + 2;
                         
                         if (distance < minDistance) {
                             // Push survivors apart
@@ -793,11 +862,9 @@
                                 survivor2.x -= pushX;
                                 survivor2.y -= pushY;
                                 
-                                // Enhanced boundary enforcement
                                 this.enforceBoundaries(survivor1);
                                 this.enforceBoundaries(survivor2);
                             } else {
-                                // If they're exactly on top of each other, separate randomly
                                 const angle = Math.random() * Math.PI * 2;
                                 const pushX = Math.cos(angle) * separation;
                                 const pushY = Math.sin(angle) * separation;
@@ -807,7 +874,6 @@
                                 survivor2.x -= pushX;
                                 survivor2.y -= pushY;
                                 
-                                // Enhanced boundary enforcement
                                 this.enforceBoundaries(survivor1);
                                 this.enforceBoundaries(survivor2);
                             }
@@ -817,7 +883,6 @@
             }
             
             enforceBoundaries(entity) {
-                // Stricter boundary enforcement
                 const margin = entity.size + 5;
                 entity.x = Math.max(margin, Math.min(this.canvas.width - margin, entity.x));
                 entity.y = Math.max(margin, Math.min(this.canvas.height - margin, entity.y));
@@ -852,41 +917,102 @@
                     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
                 }
                 
-                // Draw swirl zones
-                this.swirls.forEach(swirl => {
+                // Draw realistic whirlpools
+                this.whirlpools.forEach(whirlpool => {
                     this.ctx.save();
-                    this.ctx.translate(swirl.x, swirl.y);
-                    this.ctx.rotate(swirl.rotation);
+                    this.ctx.translate(whirlpool.x, whirlpool.y);
                     
-                    // Draw swirl effect
-                    this.ctx.strokeStyle = 'rgba(0, 255, 255, 0.3)';
-                    this.ctx.lineWidth = 3;
+                    // Draw main whirlpool body
+                    const gradient = this.ctx.createRadialGradient(0, 0, 0, 0, 0, whirlpool.radius);
+                    gradient.addColorStop(0, 'rgba(0, 50, 100, 0.8)');
+                    gradient.addColorStop(0.3, 'rgba(0, 100, 150, 0.6)');
+                    gradient.addColorStop(0.7, 'rgba(0, 150, 200, 0.4)');
+                    gradient.addColorStop(1, 'rgba(0, 200, 255, 0.2)');
+                    
+                    this.ctx.fillStyle = gradient;
                     this.ctx.beginPath();
-                    for (let i = 0; i < 3; i++) {
-                        this.ctx.arc(0, 0, swirl.radius - i * 10, 0, Math.PI * 1.5);
+                    this.ctx.arc(0, 0, whirlpool.radius, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    
+                    // Draw center teleport zone
+                    this.ctx.fillStyle = 'rgba(255, 0, 255, 0.3)';
+                    this.ctx.strokeStyle = 'rgba(255, 0, 255, 0.8)';
+                    this.ctx.lineWidth = 2;
+                    this.ctx.setLineDash([5, 5]);
+                    this.ctx.beginPath();
+                    this.ctx.arc(0, 0, whirlpool.centerRadius, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    this.ctx.stroke();
+                    this.ctx.setLineDash([]);
+                    
+                    // Draw spiral arms
+                    whirlpool.spiralArms.forEach(arm => {
+                        this.ctx.strokeStyle = 'rgba(100, 200, 255, 0.6)';
+                        this.ctx.lineWidth = 2;
+                        this.ctx.beginPath();
+                        
+                        for (let r = whirlpool.radius; r > whirlpool.centerRadius; r -= 3) {
+                            const angle = arm.baseAngle + whirlpool.rotation + (whirlpool.radius - r) * 0.1;
+                            const x = Math.cos(angle) * r;
+                            const y = Math.sin(angle) * r;
+                            
+                            if (r === whirlpool.radius) {
+                                this.ctx.moveTo(x, y);
+                            } else {
+                                this.ctx.lineTo(x, y);
+                            }
+                        }
                         this.ctx.stroke();
-                        this.ctx.rotate(Math.PI * 2 / 3);
-                    }
+                        
+                        // Draw particles on spiral arms
+                        arm.particles.forEach(particle => {
+                            const x = Math.cos(particle.angle) * particle.distance;
+                            const y = Math.sin(particle.angle) * particle.distance;
+                            const alpha = particle.life / particle.maxLife;
+                            
+                            this.ctx.fillStyle = `rgba(150, 230, 255, ${alpha})`;
+                            this.ctx.beginPath();
+                            this.ctx.arc(x, y, 2, 0, Math.PI * 2);
+                            this.ctx.fill();
+                        });
+                    });
+                    
+                    // Draw whirlpool symbol in center
+                    this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                    this.ctx.font = '20px Arial';
+                    this.ctx.textAlign = 'center';
+                    this.ctx.fillText('🌀', 0, 7);
                     
                     this.ctx.restore();
                 });
                 
-                // Draw jump zones
-                this.jumpZones.forEach(zone => {
-                    const pulseSize = Math.sin(zone.pulse) * 5;
-                    this.ctx.strokeStyle = zone.cooldown > 0 ? 'rgba(255, 165, 0, 0.3)' : 'rgba(255, 165, 0, 0.6)';
-                    this.ctx.lineWidth = 4;
-                    this.ctx.setLineDash([5, 5]);
-                    this.ctx.beginPath();
-                    this.ctx.arc(zone.x, zone.y, zone.radius + pulseSize, 0, Math.PI * 2);
-                    this.ctx.stroke();
-                    this.ctx.setLineDash([]);
+                // Draw teleport effects
+                this.teleportEffects.forEach(effect => {
+                    this.ctx.save();
+                    this.ctx.globalAlpha = effect.alpha;
+                    this.ctx.translate(effect.x, effect.y);
+                    this.ctx.scale(effect.scale, effect.scale);
                     
-                    // Draw jump symbol
-                    this.ctx.fillStyle = 'rgba(255, 165, 0, 0.8)';
-                    this.ctx.font = '20px Arial';
-                    this.ctx.textAlign = 'center';
-                    this.ctx.fillText('↗', zone.x, zone.y + 7);
+                    // Flash effect
+                    this.ctx.fillStyle = effect.color;
+                    this.ctx.beginPath();
+                    this.ctx.arc(0, 0, 20, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    
+                    // Sparkle particles
+                    for (let i = 0; i < 8; i++) {
+                        const angle = (i / 8) * Math.PI * 2;
+                        const distance = 15 + Math.sin(effect.life * 0.2) * 5;
+                        const x = Math.cos(angle) * distance;
+                        const y = Math.sin(angle) * distance;
+                        
+                        this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                        this.ctx.beginPath();
+                        this.ctx.arc(x, y, 2, 0, Math.PI * 2);
+                        this.ctx.fill();
+                    }
+                    
+                    this.ctx.restore();
                 });
                 
                 // Draw rush particles
@@ -895,7 +1021,7 @@
                     if (particle.color === 'red') {
                         color = `rgba(139, 0, 0, ${particle.alpha})`;
                     } else if (particle.color === 'splash') {
-                        color = `rgba(135, 206, 235, ${particle.alpha})`; // Light blue for normal eating splash
+                        color = `rgba(135, 206, 235, ${particle.alpha})`;
                     } else {
                         color = `rgba(255, 0, 0, ${particle.alpha})`;
                     }
@@ -920,7 +1046,7 @@
                 // Draw shark spawn countdown in center of game zone
                 if (this.gameRunning && !this.sharksSpawned) {
                     const elapsedTime = Date.now() - this.gameStartTime;
-                    const remainingTime = Math.max(0, 3000 - elapsedTime); // 3000ms = 3 seconds
+                    const remainingTime = Math.max(0, 3000 - elapsedTime);
                     const countdown = Math.ceil(remainingTime / 1000);
                     
                     if (countdown > 0) {
@@ -998,15 +1124,52 @@
                 this.boosted = false;
                 this.boostTimer = 0;
                 this.directionChangeTimer = 0;
-                this.edgeTimer = 0; // Track time spent near edges
+                this.edgeTimer = 0;
                 this.size = 8;
+                // Whirlpool properties
+                this.inWhirlpool = null;
+                this.whirlpoolCenterTimer = 0; // Timer for staying in whirlpool center
+                // Teleportation properties
+                this.teleporting = false;
+                this.teleportTimer = 0;
             }
             
-            update(sharks, swirls, jumpZones, canvasWidth, canvasHeight) {
-                // Random speed boost (1.5x speed)
+            update(sharks, whirlpools, canvasWidth, canvasHeight, teleportEffects) {
+                // Handle teleportation state
+                if (this.teleporting) {
+                    this.teleportTimer--;
+                    if (this.teleportTimer <= 0) {
+                        this.teleporting = false;
+                        // Teleport to completely random location
+                        const margin = this.size + 20;
+                        this.x = Math.random() * (canvasWidth - 2 * margin) + margin;
+                        this.y = Math.random() * (canvasHeight - 2 * margin) + margin;
+                        
+                        // Add teleport arrival effect
+                        teleportEffects.push({
+                            x: this.x,
+                            y: this.y,
+                            life: 30,
+                            maxLife: 30,
+                            alpha: 1,
+                            scale: 0.5,
+                            color: 'rgba(255, 0, 255, 0.8)'
+                        });
+                        
+                        // Reset movement
+                        this.vx = (Math.random() - 0.5) * 2;
+                        this.vy = (Math.random() - 0.5) * 2;
+                        this.edgeTimer = 0;
+                        this.whirlpoolCenterTimer = 0;
+                        this.inWhirlpool = null;
+                    }
+                    return; // Don't process other movement while teleporting
+                }
+                
+                // Random speed boost
                 if (Math.random() < 0.005 && !this.boosted) {
                     this.boosted = true;
-                    this.boostTimer = 180; // 3 seconds at 60fps
+                    this.boostTimer = 180;
                 }
                 
                 if (this.boosted) {
@@ -1018,35 +1181,72 @@
                 
                 const speed = this.boosted ? this.baseSpeed * 2.0 : this.baseSpeed;
                 
-                // Check swirl zones
-                swirls.forEach(swirl => {
-                    const dx = this.x - swirl.x;
-                    const dy = this.y - swirl.y;
+                // Check whirlpool physics
+                let affectedByWhirlpool = false;
+                whirlpools.forEach(whirlpool => {
+                    const dx = this.x - whirlpool.x;
+                    const dy = this.y - whirlpool.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
-                    if (distance < swirl.radius) {
-                        // Apply swirl effect
-                        const force = (swirl.radius - distance) / swirl.radius;
-                        const angle = Math.atan2(dy, dx) + Math.PI / 2;
-                        this.vx += Math.cos(angle) * swirl.strength * force;
-                        this.vy += Math.sin(angle) * swirl.strength * force;
+                    if (distance < whirlpool.radius) {
+                        affectedByWhirlpool = true;
+                        this.inWhirlpool = whirlpool;
+                        
+                        // Check if in center zone
+                        if (distance <= whirlpool.centerRadius) {
+                            this.whirlpoolCenterTimer++;
+                            
+                            // If in center for 3 seconds (180 frames), teleport
+                            if (this.whirlpoolCenterTimer >= 180) {
+                                // Start teleportation with flash effect
+                                this.teleporting = true;
+                                this.teleportTimer = 30;
+                                
+                                // Add teleport departure effect
+                                teleportEffects.push({
+                                    x: this.x,
+                                    y: this.y,
+                                    life: 20,
+                                    maxLife: 20,
+                                    alpha: 1,
+                                    scale: 1,
+                                    color: 'rgba(0, 255, 255, 0.8)'
+                                });
+                                
+                                return; // Exit early to start teleporting
+                            }
+                            
+                            // Slow movement in center
+                            this.vx *= 0.95;
+                            this.vy *= 0.95;
+                        } else {
+                            // Not in center, reset timer
+                            this.whirlpoolCenterTimer = 0;
+                            
+                            // Apply gentle swirling force toward center
+                            const centerForce = 0.02;
+                            const swirl = 0.03;
+                            
+                            this.vx += -dx * centerForce + -dy * swirl;
+                            this.vy += -dy * centerForce + dx * swirl;
+                        }
+                        
+                        return; // Skip normal movement while in whirlpool
                     }
                 });
                 
-                // Check jump zones
-                jumpZones.forEach(zone => {
-                    const dx = this.x - zone.x;
-                    const dy = this.y - zone.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance < zone.radius && zone.cooldown === 0) {
-                        // Jump to random location with enhanced boundaries
-                        const margin = this.size + 20;
-                        this.x = Math.random() * (canvasWidth - 2 * margin) + margin;
-                        this.y = Math.random() * (canvasHeight - 2 * margin) + margin;
-                        zone.cooldown = 180; // 3 seconds cooldown
-                    }
-                });
+                if (!affectedByWhirlpool) {
+                    this.inWhirlpool = null;
+                    this.whirlpoolCenterTimer = 0;
+                }
+                
+                // Skip normal movement if affected by whirlpool
+                if (affectedByWhirlpool) {
+                    // Update position while in whirlpool
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    return;
+                }
                 
                 // Find nearest shark
                 let nearestShark = null;
@@ -1063,14 +1263,13 @@
                     }
                 });
                 
-                // Move away from nearest shark - likely to opposite direction
+                // Move away from nearest shark
                 if (nearestShark && nearestDistance < 200) {
                     const dx = this.x - nearestShark.x;
                     const dy = this.y - nearestShark.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
                     if (distance > 0) {
-                        // Likely to move opposite to shark
                         const oppositeX = (dx / distance) * speed;
                         const oppositeY = (dy / distance) * speed;
                         
@@ -1096,54 +1295,64 @@
                 this.x += this.vx;
                 this.y += this.vy;
                 
-                // Enhanced boundary enforcement - stricter edge detection
-                const edgeDistance = 40; // Reduced from 50 for stricter boundaries
+                // Enhanced edge detection for teleportation
+                const edgeDistance = 35;
                 const nearEdge = (this.x <= edgeDistance || this.x >= canvasWidth - edgeDistance || 
                                 this.y <= edgeDistance || this.y >= canvasHeight - edgeDistance);
                 
                 if (nearEdge) {
                     this.edgeTimer++;
-                    // If near edges for 2 seconds (120 frames at 60fps), teleport immediately
-                    if (this.edgeTimer >= 120) { // Reduced from 180 for faster teleport
-                        // Teleport to safe zone in center area
-                        const safeMargin = 80; // Larger safe zone
-                        this.x = Math.random() * (canvasWidth - 2 * safeMargin) + safeMargin;
-                        this.y = Math.random() * (canvasHeight - 2 * safeMargin) + safeMargin;
-                        this.edgeTimer = 0;
-                        // Add some random velocity after teleport
-                        this.vx = (Math.random() - 0.5) * speed * 2;
-                        this.vy = (Math.random() - 0.5) * speed * 2;
+                    // If near edges for 2 seconds, start teleportation
+                    if (this.edgeTimer >= 120) {
+                        // Start teleportation with flash effect
+                        this.teleporting = true;
+                        this.teleportTimer = 30;
+                        
+                        // Add teleport departure effect
+                        teleportEffects.push({
+                            x: this.x,
+                            y: this.y,
+                            life: 20,
+                            maxLife: 20,
+                            alpha: 1,
+                            scale: 1,
+                            color: 'rgba(255, 0, 255, 0.8)'
+                        });
                     }
                 } else {
-                    // Reset edge timer when not near edges
                     this.edgeTimer = 0;
                 }
                 
-                // Enhanced boundary bouncing with stricter containment
-                const margin = this.size + 5; // Increased margin
+                // Enhanced boundary bouncing
+                const margin = this.size + 5;
                 if (this.x <= margin) {
                     this.x = margin;
-                    this.vx = Math.abs(this.vx) * 0.8; // Force away from edge
+                    this.vx = Math.abs(this.vx) * 0.8;
                     this.vy += (Math.random() - 0.5) * 0.5;
                 } else if (this.x >= canvasWidth - margin) {
                     this.x = canvasWidth - margin;
-                    this.vx = -Math.abs(this.vx) * 0.8; // Force away from edge
+                    this.vx = -Math.abs(this.vx) * 0.8;
                     this.vy += (Math.random() - 0.5) * 0.5;
                 }
                 
                 if (this.y <= margin) {
                     this.y = margin;
-                    this.vy = Math.abs(this.vy) * 0.8; // Force away from edge
+                    this.vy = Math.abs(this.vy) * 0.8;
                     this.vx += (Math.random() - 0.5) * 0.5;
                 } else if (this.y >= canvasHeight - margin) {
                     this.y = canvasHeight - margin;
-                    this.vy = -Math.abs(this.vy) * 0.8; // Force away from edge
+                    this.vy = -Math.abs(this.vy) * 0.8;
                     this.vx += (Math.random() - 0.5) * 0.5;
                 }
             }
             
             draw(ctx) {
-                // Always use assigned color - no color change when boosted
+                // Don't draw if teleporting (invisible during teleport)
+                if (this.teleporting) {
+                    return;
+                }
+                
+                // Always use assigned color
                 ctx.fillStyle = this.color;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -1155,7 +1364,7 @@
                 ctx.textAlign = 'center';
                 ctx.fillText(`${this.name} #${this.number}`, this.x, this.y - 15);
                 
-                // Draw boost effect (golden glow but no color change)
+                // Draw boost effect
                 if (this.boosted) {
                     ctx.strokeStyle = '#FFC107';
                     ctx.lineWidth = 3;
@@ -1163,7 +1372,6 @@
                     ctx.arc(this.x, this.y, this.size + 4, 0, Math.PI * 2);
                     ctx.stroke();
                     
-                    // Additional glow effect
                     ctx.strokeStyle = 'rgba(255, 193, 7, 0.5)';
                     ctx.lineWidth = 6;
                     ctx.beginPath();
@@ -1171,9 +1379,27 @@
                     ctx.stroke();
                 }
                 
+                // Draw whirlpool center effect when in center
+                if (this.inWhirlpool && this.whirlpoolCenterTimer > 0) {
+                    const intensity = Math.min(this.whirlpoolCenterTimer / 180, 1);
+                    ctx.strokeStyle = `rgba(0, 255, 255, ${intensity})`;
+                    ctx.lineWidth = 3;
+                    ctx.setLineDash([3, 3]);
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size + 8, 0, Math.PI * 2);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                    
+                    // Draw countdown indicator
+                    const timeLeft = Math.ceil((180 - this.whirlpoolCenterTimer) / 60);
+                    ctx.fillStyle = `rgba(0, 255, 255, ${intensity})`;
+                    ctx.font = 'bold 12px Arial';
+                    ctx.fillText(`${timeLeft}`, this.x, this.y + 25);
+                }
+                
                 // Draw edge warning when near edges
-                if (this.edgeTimer > 0) {
-                    const warningIntensity = Math.min(this.edgeTimer / 120, 1); // Changed from 180 to 120
+                if (this.edgeTimer > 0 && !this.teleporting) {
+                    const warningIntensity = Math.min(this.edgeTimer / 120, 1);
                     ctx.strokeStyle = `rgba(255, 0, 255, ${warningIntensity})`;
                     ctx.lineWidth = 3;
                     ctx.setLineDash([5, 5]);
@@ -1183,7 +1409,7 @@
                     ctx.setLineDash([]);
                     
                     // Draw countdown indicator
-                    const timeLeft = Math.ceil((120 - this.edgeTimer) / 60); // Changed from 180 to 120
+                    const timeLeft = Math.ceil((120 - this.edgeTimer) / 60);
                     ctx.fillStyle = `rgba(255, 0, 255, ${warningIntensity})`;
                     ctx.font = 'bold 12px Arial';
                     ctx.fillText(`${timeLeft}`, this.x, this.y + 25);
@@ -1199,12 +1425,12 @@
                 this.vy = 0;
                 this.targetVx = 0;
                 this.targetVy = 0;
-                this.baseSpeed = 3.0; // 3x survivor speed
+                this.baseSpeed = 3.0;
                 this.rushing = false;
                 this.rushTimer = 0;
                 this.eating = false;
                 this.eatingTimer = 0;
-                this.wasRushingWhenEating = false; // Track if shark was rushing when it started eating
+                this.wasRushingWhenEating = false;
                 this.jumpHeight = 0;
                 this.size = 12;
                 this.target = null;
@@ -1214,34 +1440,29 @@
             }
             
             update(survivors, allSharks, canvasWidth, canvasHeight) {
-                // Update wave timer for animation
                 this.waveTimer += 0.2;
                 
-                // Handle eating state - SHARK MUST STOP COMPLETELY
+                // Handle eating state
                 if (this.eating) {
                     this.eatingTimer--;
                     
-                    // FORCE ZERO MOVEMENT - shark is completely stationary
                     this.vx = 0;
                     this.vy = 0;
                     this.targetVx = 0;
                     this.targetVy = 0;
                     
-                    // Enhanced jump animation with multiple phases - FASTER (60 frames = 1 second instead of 2)
-                    const totalFrames = 60; // 1 second (reduced from 120)
-                    const phase1 = totalFrames * 0.25; // Rising phase (25%)
-                    const phase2 = totalFrames * 0.5;  // Peak phase (50%)
-                    const phase3 = totalFrames * 0.25; // Falling phase (25%)
+                    // Enhanced jump animation - FASTER (60 frames = 1 second)
+                    const totalFrames = 60;
+                    const phase1 = totalFrames * 0.25;
+                    const phase2 = totalFrames * 0.5;
+                    const phase3 = totalFrames * 0.25;
                     
                     if (this.eatingTimer > totalFrames - phase1) {
-                        // Rising phase - shark jumps up dramatically
                         const progress = (totalFrames - this.eatingTimer) / phase1;
-                        this.jumpHeight = progress * 60; // Jump up to 60 pixels (higher)
+                        this.jumpHeight = progress * 60;
                     } else if (this.eatingTimer > phase3) {
-                        // Peak phase - shark stays at peak height with feeding motion
-                        this.jumpHeight = 60 + Math.sin(this.eatingTimer * 0.3) * 8; // Feeding thrashing motion
+                        this.jumpHeight = 60 + Math.sin(this.eatingTimer * 0.3) * 8;
                     } else {
-                        // Falling phase - shark falls back down
                         const progress = this.eatingTimer / phase3;
                         this.jumpHeight = progress * 60;
                     }
@@ -1249,61 +1470,52 @@
                     if (this.eatingTimer <= 0) {
                         this.eating = false;
                         this.jumpHeight = 0;
-                        console.log("Shark finished eating (v0.3 - faster!) - resuming movement");
-                        // Resume normal movement with random direction
+                        console.log("Shark finished eating (v0.5 - whirlpool teleport!) - resuming movement");
                         const randomAngle = Math.random() * Math.PI * 2;
                         this.vx = Math.cos(randomAngle) * this.baseSpeed;
                         this.vy = Math.sin(randomAngle) * this.baseSpeed;
                     }
                     
-                    // CRITICAL: Return early - no other movement logic while eating
                     return;
                 }
                 
-                // Rush ability - 15x speed for 0.5 seconds (VERY RARE OCCURRENCE)
+                // Rush ability
                 if (this.rushing) {
                     this.rushTimer--;
                     if (this.rushTimer <= 0) {
                         this.rushing = false;
                     }
-                } else if (Math.random() < 0.002) { // 0.2% chance - rushing occasionally happens
+                } else if (Math.random() < 0.002) {
                     this.rushing = true;
-                    this.rushTimer = 30; // 0.5 seconds rush (30 frames at 60fps)
+                    this.rushTimer = 30;
                 }
                 
                 const speed = this.rushing ? this.baseSpeed * 15 : this.baseSpeed;
                 
-                // Random target change timer
                 this.targetChangeTimer++;
                 
                 if (!this.rushing) {
-                    // Random target change (every 3-6 seconds)
                     if (this.targetChangeTimer > 180 + Math.random() * 180) {
                         this.target = null;
                         this.targetChangeTimer = 0;
                     }
                     
-                    // Find target if we don't have one or randomly change target
-                    if (!this.target || Math.random() < 0.008) { // 0.8% chance per frame to change target
+                    if (!this.target || Math.random() < 0.008) {
                         let availableTargets = survivors.filter(survivor => {
-                            // Check if any other shark is already targeting this survivor
                             const isTargetedByOther = allSharks.some(shark => 
                                 shark !== this && shark.target === survivor
                             );
-                            return !isTargetedByOther;
+                            return !isTargetedByOther && !survivor.teleporting;
                         });
                         
                         if (availableTargets.length === 0) {
-                            availableTargets = survivors; // Fallback to any survivor
+                            availableTargets = survivors.filter(s => !s.teleporting);
                         }
                         
                         if (availableTargets.length > 0) {
-                            // Sometimes pick random target, sometimes pick nearest
                             if (Math.random() < 0.4) {
-                                // 40% chance to pick random target
                                 this.target = availableTargets[Math.floor(Math.random() * availableTargets.length)];
                             } else {
-                                // 60% chance to pick nearest target
                                 let nearestTarget = null;
                                 let nearestDistance = Infinity;
                                 
@@ -1323,8 +1535,7 @@
                         }
                     }
                     
-                    // Chase target with smooth acceleration
-                    if (this.target) {
+                    if (this.target && !this.target.teleporting) {
                         const dx = this.target.x - this.x;
                         const dy = this.target.y - this.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -1335,23 +1546,18 @@
                         }
                     }
                     
-                    // Smooth acceleration towards target velocity
                     this.vx += (this.targetVx - this.vx) * this.acceleration;
                     this.vy += (this.targetVy - this.vy) * this.acceleration;
                 } else {
-                    // During rush, move at full speed directly towards target - no acceleration
-                    if (this.target) {
+                    if (this.target && !this.target.teleporting) {
                         const dx = this.target.x - this.x;
                         const dy = this.target.y - this.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
                         
-                        // Fix bug: only apply rush speed if distance > 0 and target exists
-                        if (distance > 1.0) { // Increased threshold to 1.0
-                            // Apply full rush speed immediately
+                        if (distance > 1.0) {
                             this.vx = (dx / distance) * speed;
                             this.vy = (dy / distance) * speed;
                         } else {
-                            // If too close or no distance, maintain current velocity but at rush speed
                             const currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
                             if (currentSpeed > 0.1) {
                                 this.vx = (this.vx / currentSpeed) * speed;
@@ -1366,48 +1572,45 @@
                 this.y += this.vy;
                 
                 // Enhanced boundary enforcement for sharks
-                const effectiveSize = this.size * 1.5; // Account for realistic shark size
-                const margin = effectiveSize + 5; // Increased margin
+                const effectiveSize = this.size * 1.5;
+                const margin = effectiveSize + 5;
                 
                 if (this.x <= margin) {
                     this.x = margin;
-                    this.vx = Math.abs(this.vx) * 0.8; // Force away from edge
+                    this.vx = Math.abs(this.vx) * 0.8;
                     this.vy += (Math.random() - 0.5) * 0.3;
                 } else if (this.x >= canvasWidth - margin) {
                     this.x = canvasWidth - margin;
-                    this.vx = -Math.abs(this.vx) * 0.8; // Force away from edge
+                    this.vx = -Math.abs(this.vx) * 0.8;
                     this.vy += (Math.random() - 0.5) * 0.3;
                 }
                 
                 if (this.y <= margin) {
                     this.y = margin;
-                    this.vy = Math.abs(this.vy) * 0.8; // Force away from edge
+                    this.vy = Math.abs(this.vy) * 0.8;
                     this.vx += (Math.random() - 0.5) * 0.3;
                 } else if (this.y >= canvasHeight - margin) {
                     this.y = canvasHeight - margin;
-                    this.vy = -Math.abs(this.vy) * 0.8; // Force away from edge
+                    this.vy = -Math.abs(this.vy) * 0.8;
                     this.vx += (Math.random() - 0.5) * 0.3;
                 }
             }
             
             startEating(wasRushing = false) {
-                // CRITICAL: Shark must completely stop when eating
                 this.eating = true;
-                this.wasRushingWhenEating = wasRushing; // Remember if shark was rushing when it started eating
-                this.eatingTimer = 60; // 1 second eating animation (REDUCED FROM 120 - HALF TIME!)
+                this.wasRushingWhenEating = wasRushing;
+                this.eatingTimer = 60; // 1 second eating animation
                 this.jumpHeight = 0;
                 
-                // FORCE STOP - Clear all movement
                 this.vx = 0;
                 this.vy = 0;
                 this.targetVx = 0;
                 this.targetVy = 0;
                 
-                // Clear any rush state
                 this.rushing = false;
                 this.rushTimer = 0;
                 
-                console.log(`${wasRushing ? 'Rushing' : 'Normal'} shark started eating (v0.3 - faster 1 second!) - all movement stopped!`);
+                console.log(`${wasRushing ? 'Rushing' : 'Normal'} shark started eating (v0.5 - whirlpool teleport!) - all movement stopped!`);
             }
             
             draw(ctx) {
@@ -1423,9 +1626,9 @@
                     
                     if (this.wasRushingWhenEating) {
                         // RUSHING SHARK EATING - More dramatic and violent
-                        const bodyColor = '#1C1C1C'; // Almost black when rush-eating
-                        const bellyColor = '#8B0000'; // Dark red belly
-                        const finColor = '#000000'; // Pure black fins
+                        const bodyColor = '#1C1C1C';
+                        const bellyColor = '#8B0000';
+                        const finColor = '#000000';
                         
                         // Larger, more violent body when rush-eating
                         ctx.fillStyle = bodyColor;
@@ -1477,23 +1680,23 @@
                         
                     } else {
                         // NORMAL SHARK EATING - Controlled and realistic feeding behavior
-                        const bodyColor = '#708090'; // Slate grey - lighter than rushing
-                        const bellyColor = '#F0F8FF'; // Alice blue belly
-                        const finColor = '#2F4F4F'; // Dark slate grey fins
+                        const bodyColor = '#708090';
+                        const bellyColor = '#F0F8FF';
+                        const finColor = '#2F4F4F';
                         
-                        // Normal-sized body when eating normally (smaller than rushing)
+                        // Normal-sized body when eating normally
                         ctx.fillStyle = bodyColor;
                         ctx.beginPath();
                         ctx.ellipse(0, 0, this.size * 1.8, this.size * 1.1, 0, 0, Math.PI * 2);
                         ctx.fill();
                         
-                        // Light belly (more visible than rushing)
+                        // Light belly
                         ctx.fillStyle = bellyColor;
                         ctx.beginPath();
                         ctx.ellipse(0, this.size * 0.2, this.size * 1.6, this.size * 0.7, 0, 0, Math.PI * 2);
                         ctx.fill();
                         
-                        // Normal shark head (smaller than rushing)
+                        // Normal shark head
                         ctx.fillStyle = bodyColor;
                         ctx.beginPath();
                         ctx.moveTo(this.size * 1.8, 0);
@@ -1503,7 +1706,7 @@
                         ctx.closePath();
                         ctx.fill();
                         
-                        // Normal-sized teeth (much smaller than rushing)
+                        // Normal-sized teeth
                         ctx.fillStyle = '#FFFAF0';
                         for (let i = 0; i < 8; i++) {
                             // Upper teeth - smaller
@@ -1523,13 +1726,13 @@
                             ctx.fill();
                         }
                         
-                        // Light blood effect for normal eating (much less than rushing)
-                        ctx.fillStyle = 'rgba(205, 92, 92, 0.4)'; // Light coral color
+                        // Light blood effect for normal eating
+                        ctx.fillStyle = 'rgba(205, 92, 92, 0.4)';
                         ctx.beginPath();
                         ctx.arc(this.size * 2.6, 0, 5, 0, Math.PI * 2);
                         ctx.fill();
                         
-                        // Normal dorsal fin (standard size)
+                        // Normal dorsal fin
                         ctx.fillStyle = finColor;
                         ctx.beginPath();
                         ctx.moveTo(-this.size * 0.6, 0);
@@ -1553,8 +1756,6 @@
                         ctx.closePath();
                         ctx.fill();
                     }
-                    
-                    // Common elements for both eating types but with different styling
                     
                     // Tail fin - different colors for normal vs rushing
                     ctx.fillStyle = this.wasRushingWhenEating ? '#000000' : '#2F4F4F';
@@ -1635,8 +1836,8 @@
                     ctx.rotate(angle);
                     
                     // Darker, more aggressive colors when rushing
-                    const rushBodyColor = '#2F2F2F'; // Very dark grey
-                    const rushFinColor = '#1a1a1a'; // Almost black
+                    const rushBodyColor = '#2F2F2F';
+                    const rushFinColor = '#1a1a1a';
                     
                     // Head and upper body visible when rushing
                     ctx.fillStyle = rushBodyColor;
@@ -1693,8 +1894,8 @@
                     ctx.rotate(angle);
                     
                     // Realistic grey shark colors
-                    const normalBodyColor = '#696969'; // Dim grey
-                    const normalFinColor = '#2F4F4F'; // Dark slate grey
+                    const normalBodyColor = '#696969';
+                    const normalFinColor = '#2F4F4F';
                     
                     // Dorsal fin only (most visible part of swimming shark)
                     ctx.fillStyle = normalFinColor;
