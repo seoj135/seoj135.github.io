@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shark Roulette Game v0.5</title>
+    <title>Shark Roulette Game</title>
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7091953613763690" crossorigin="anonymous"></script>
     <style>
@@ -353,17 +353,13 @@
     <div class="main-content">
         <div class="game-container">
             <h1 style="text-align: center; margin-bottom: 30px; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-                🦈 Shark Roulette Game v0.5 🏊‍♂️
+                🦈 Shark Roulette Game 🏊‍♂️
             </h1>
-            
-            <div class="version-info">
-                <strong>NEW in v0.5:</strong> 💰 Google AdSense Integration! 🌀 Whirlpool Teleport - Stay in center for 3s to teleport! ❌ Removed Jump Pads for cleaner gameplay!
-            </div>
             
             <div class="controls">
                 <div class="control-group">
                     <label>Survivors (Name*Count, Name*Count, ...):</label>
-                    <textarea id="survivorsInput" placeholder="Alice*3, Bob*2, Charlie*4">Alice*3, Bob*2, Charlie*4</textarea>
+                    <textarea id="survivorsInput" placeholder="Alice*5, Bob*5, Charlie*5">Alice*5, Bob*5, Charlie*5</textarea>
                 </div>
                 
                 <div class="control-group">
@@ -394,15 +390,15 @@
                     </div>
                     <div class="legend-item">
                         <div class="legend-color" style="background-color: #696969;"></div>
-                        <span>Normal Shark (Grey)</span>
+                        <span>Normal Shark (SVG)</span>
                     </div>
                     <div class="legend-item">
-                        <div class="legend-color" style="background-color: #2F2F2F;"></div>
-                        <span>Rushing Shark (Dark Grey)</span>
+                        <div class="legend-color" style="background-color: #FF6B35; border: 3px solid #FFD700;"></div>
+                        <span>⚡ Rushing Shark (2x speed, 2s)</span>
                     </div>
                     <div class="legend-item">
-                        <div class="legend-color" style="background-color: #2F4F4F;"></div>
-                        <span>Eating Shark (Slate Grey)</span>
+                        <div class="legend-color" style="background-color: #8B0000;"></div>
+                        <span>Eating Shark (Dark Red)</span>
                     </div>
                     <div class="legend-item">
                         <div class="legend-color" style="background-color: #FF00FF; border: 2px dashed #fff;"></div>
@@ -410,7 +406,7 @@
                     </div>
                     <div class="legend-item">
                         <div class="legend-color" style="background-color: #00FFFF; border: 2px solid #fff;"></div>
-                        <span>🌀 Whirlpool (3s Center = Teleport)</span>
+                        <span>🌀 Whirlpool (2s Center = Teleport)</span>
                     </div>
                 </div>
             </div>
@@ -418,6 +414,22 @@
     </div>
 
     <script>
+        // SVG Shark data
+        const sharkSVG = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg id="svg4231" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="227.24mm" width="451.67mm" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 1600.4133 805.19193">
+<g id="layer1" transform="translate(451.64 -135.48)">
+<g id="g4206" style="image-rendering:optimizeQuality;shape-rendering:geometricPrecision" fill-rule="evenodd" clip-rule="evenodd" transform="matrix(.070618 0 0 .070618 -722.96 -266.41)">
+<path id="path23" fill="#1a1a1a" class="fil5" d="m14586 9021c1127 50 2245 295 3338 562 239 58 477 118 716 178 200-130 417-233 640-316l293-109v313c0 87-17 169-37 253-5 25-12 52-17 78 833 203 1682 393 2537 468 739-1707 1879-3081 3529-3976l417-225-100 462c-221 1027-735 1954-1035 2955-214 713-306 955-3 1666 64 153 159 298 255 433 119 167 249 327 382 485 212 251 434 494 641 749 133 164 348 431 355 647l8 280-273-61c-1519-339-2851-1098-3911-2234-311 118-617 247-923 377-230 97-459 195-689 292l594 151-1149 383-27 2c-196 14-392-15-578-75-309 115-620 223-934 323-117 278-275 747-39 984l581 581-792-217c-187-52-375-99-562-150-167-46-334-96-495-159-315-124-580-288-835-506-1219 220-2457 300-3695 259-19 78-35 155-47 234-82 504-41 1028-3 1535 25 346 50 693 43 1040l-8 410-335-237c-919-649-1634-1942-1962-3016-836 10-1674-52-2495-208-815-156-1609-406-2358-763l-360-171 339-210c27-18 56-34 84-49-17 2-34 4-51 6-105 11-211 34-316 29-124-6-242-55-355-101-294-120-594-293-829-509-106-97-176-229-150-376 46-258 349-386 566-471 2242-879 4573-1501 6958-1837 646-1168 1547-2130 2617-2924l534-395-196 634c-248 805-173 1743 132 2526z"/>
+<path id="path25" fill="#fff" class="fil6" d="m14459 8851c1127 50 2244 295 3337 562 239 58 478 118 717 178 200-130 416-233 640-316l293-109v313c0 87-18 169-37 253-6 25-12 52-17 78 833 203 1681 394 2537 468 738-1707 1879-3081 3529-3976l416-225-99 462c-221 1027-735 1954-1035 2955-214 713-306 955-4 1666 65 153 159 298 255 433 120 167 250 327 382 485 212 251 434 494 642 749 132 164 348 431 354 647l9 280-274-61c-1519-339-2850-1097-3911-2234-310 118-616 247-922 377-230 97-460 195-690 292l595 151-1150 383-27 2c-196 14-391-15-578-75-308 115-619 223-933 323-117 279-276 747-39 984l580 581-792-217c-187-52-374-99-561-150-168-46-334-96-496-159-315-124-579-288-834-505-1220 219-2457 299-3695 258-19 78-35 156-48 234-82 504-40 1028-3 1535 25 346 51 693 44 1040l-9 410-334-237c-919-649-1635-1942-1963-3016-835 10-1673-52-2494-208-815-156-1609-406-2359-763l-359-171 338-210c28-18 56-34 85-48-17 1-34 3-52 5-104 11-210 34-316 29-124-6-241-55-354-101-295-120-595-293-830-509-106-97-176-229-149-376 46-258 349-386 566-471 2242-879 4572-1501 6957-1837 647-1168 1548-2130 2618-2924l533-395-195 634c-248 805-173 1744 132 2526z"/>
+<path id="path27" fill="#7194b8" class="fil7" d="m4493 11050c2208-866 4537-1499 7017-1839 631-1179 1522-2144 2609-2950-275 890-180 1940 191 2803 1381 40 2828 406 4244 762 198-139 423-254 674-347 0 167-95 338-51 503 999 245 1974 461 2891 525 740-1783 1885-3141 3494-4013-215 999-727 1924-1031 2937-237 791-314 1064 5 1814 330 777 1605 1869 1616 2236-1322-295-2721-968-3897-2277-671 246-1418 592-2287 940 128 66 271 121 434 163l-419 140c-198 14-384-22-564-89-345 129-708 256-1091 376-201 450-356 992-33 1316-816-224-1265-278-1885-838-1140 214-2434 330-3922 269-308 962-41 2018-62 3027-960-678-1656-2078-1925-3058-1845 42-3491-265-4922-947 464-289 1177-189 1766-284-518-187-1277-224-1871-161-295 32-274 63-565-56-270-111-553-274-765-468-264-242 157-409 349-484z"/>
+<path id="path29" class="fil8" d="m6165 10942c86 0 156 69 156 155s-70 155-156 155c-85 0-155-69-155-155s70-155 155-155z"/>
+<path id="path31" fill="#333" class="fil9" d="m6132 11005c48 0 87 39 87 87s-39 87-87 87-86-39-86-87 38-87 86-87z"/>
+<path id="path33" fill="#b8c9db" class="fil10" d="m22263 11172c-3946 967-6686 842-9210 590-255 495-423 1081-561 1692 1313 54 2621-26 3913-268l13-2 10 8c244 220 494 391 798 515 159 65 323 115 489 160 167 46 334 89 502 134-270-359-78-909 86-1278l5-11 12-4c367-114 730-240 1089-375l10-4 9 4c177 66 361 101 550 87l332-111c-122-36-240-83-354-141l-53-27 55-22c408-163 812-337 1217-508 354-150 710-300 1071-432l17-7zm-12103 296c-1743-144-3517-159-5639 310 129 78 265 145 398 199 80 32 186 79 273 83 36 1 72-3 107-7 58-7 115-15 172-21 574-62 1340-34 1883 162l98 35-103 17c-204 32-413 42-619 51-348 17-779 30-1094 203 718 337 1475 573 2254 721 857 164 1732 221 2604 202-174-643-301-1292-334-1955z"/>
+<path id="path35" class="fil8" d="m9938 10994c9 54 1 223 1 427s8 445-14 636-74 332-91 323c-18-8-1-166 4-365s-1-440 4-606c5-165 22-256 43-332 20-76 45-136 53-83zm-287-73c9 60 1 246 1 473 0 226 8 492-14 703s-74 368-92 358c-17-9 0-184 5-404 5-221-1-487 4-670 5-184 22-284 43-368 20-84 45-151 53-92zm-287 111c8 50 1 210 1 403s7 421-15 601-73 314-91 306c-17-8 0-157 5-345 5-189-2-416 4-573 5-157 22-243 42-314 21-72 46-129 54-78zm-287 55c8 46 0 192 0 369 0 176 8 384-14 549s-74 287-91 280c-18-7-1-144 4-316 6-172-1-380 4-523 6-143 22-222 43-288 21-65 45-118 54-71zm-288 96c9 39 1 161 1 309s8 322-14 460-74 240-91 234c-18-6-1-120 4-264 5-145-1-319 4-439s22-185 43-240c20-55 45-99 53-60z"/>
+</g>
+</g>
+</svg>`;
+
         class Game {
             constructor() {
                 this.canvas = document.getElementById('gameCanvas');
@@ -433,11 +445,26 @@
                 this.screenShake = 0;
                 this.rushParticles = [];
                 this.teleportEffects = [];
+                this.sharkImage = null;
                 
+                this.loadSharkImage();
                 this.setupEventListeners();
                 this.adjustCanvasSize();
                 this.generateZones();
                 this.gameLoop();
+            }
+            
+            loadSharkImage() {
+                // Create an image from the SVG data
+                const blob = new Blob([sharkSVG], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(blob);
+                
+                this.sharkImage = new Image();
+                this.sharkImage.onload = () => {
+                    console.log('Shark SVG loaded successfully');
+                    URL.revokeObjectURL(url);
+                };
+                this.sharkImage.src = url;
             }
             
             setupEventListeners() {
@@ -448,18 +475,16 @@
             
             adjustCanvasSize() {
                 const container = document.querySelector('.game-container');
-                const containerWidth = container.clientWidth - 40; // Account for padding
+                const containerWidth = container.clientWidth - 40;
                 const isMobile = window.innerWidth <= 767;
                 
                 if (isMobile) {
-                    // Mobile: responsive canvas
                     const maxWidth = Math.min(containerWidth, window.innerWidth - 20);
-                    const aspectRatio = 800 / 500; // Original aspect ratio
+                    const aspectRatio = 800 / 500;
                     
                     this.canvas.style.width = maxWidth + 'px';
                     this.canvas.style.height = (maxWidth / aspectRatio) + 'px';
                 } else {
-                    // Desktop: fixed size but responsive up to max
                     const maxWidth = Math.min(800, containerWidth);
                     const aspectRatio = 800 / 500;
                     
@@ -471,7 +496,7 @@
             generateZones() {
                 this.whirlpools = [];
                 
-                // Generate 3-5 whirlpools (non-overlapping)
+                // Generate 3-5 whirlpools
                 const whirlpoolCount = Math.floor(Math.random() * 3) + 3;
                 for (let i = 0; i < whirlpoolCount; i++) {
                     let attempts = 0;
@@ -483,7 +508,7 @@
                             x: Math.random() * (this.canvas.width - 140) + 70,
                             y: Math.random() * (this.canvas.height - 140) + 70,
                             radius: Math.random() * 30 + 50,
-                            centerRadius: 15, // Center zone for teleportation
+                            centerRadius: 23, // Center zone for teleportation
                             rotation: 0,
                             spiralArms: []
                         };
@@ -529,7 +554,7 @@
                 
                 this.parseSurvivors(survivorsInput);
                 this.spawnSurvivors();
-                this.generateZones(); // Generate new zones each game
+                this.generateZones();
                 this.gameRunning = true;
                 this.gameStartTime = Date.now();
                 this.sharksSpawned = false;
@@ -541,7 +566,6 @@
                 document.getElementById('gameStatus').textContent = 'Game Started! Sharks spawning in 3 seconds...';
                 document.getElementById('winnerAnnouncement').style.display = 'none';
                 
-                // Spawn sharks after 3 seconds
                 setTimeout(() => {
                     this.spawnSharks(sharksCount);
                     this.sharksSpawned = true;
@@ -552,7 +576,7 @@
             parseSurvivors(input) {
                 this.survivors = [];
                 const parts = input.split(',');
-                const nameColors = {}; // Track colors for each unique name
+                const nameColors = {};
                 const colorPalette = [
                     '#4CAF50', '#2196F3', '#FF9800', '#E91E63', '#9C27B0', 
                     '#00BCD4', '#8BC34A', '#FF5722', '#795548', '#607D8B',
@@ -567,7 +591,6 @@
                         const cleanName = name.trim();
                         const count = parseInt(countStr) || 1;
                         
-                        // Assign color to this name if not already assigned
                         if (!nameColors[cleanName]) {
                             nameColors[cleanName] = colorPalette[colorIndex % colorPalette.length];
                             colorIndex++;
@@ -589,7 +612,6 @@
             
             spawnSurvivors() {
                 this.survivors.forEach(survivor => {
-                    // Spawn randomly on the lake with stricter boundaries
                     const margin = survivor.size + 10;
                     survivor.x = Math.random() * (this.canvas.width - 2 * margin) + margin;
                     survivor.y = Math.random() * (this.canvas.height - 2 * margin) + margin;
@@ -601,8 +623,7 @@
             spawnSharks(count) {
                 this.sharks = [];
                 for (let i = 0; i < count; i++) {
-                    const shark = new Shark();
-                    // Spawn randomly on the lake with stricter boundaries
+                    const shark = new Shark(this.sharkImage);
                     const margin = shark.size * 1.5 + 10;
                     shark.x = Math.random() * (this.canvas.width - 2 * margin) + margin;
                     shark.y = Math.random() * (this.canvas.height - 2 * margin) + margin;
@@ -622,7 +643,7 @@
                 this.screenShake = 0;
                 this.rushParticles = [];
                 this.teleportEffects = [];
-                this.generateZones(); // Generate new zones
+                this.generateZones();
                 document.getElementById('startBtn').disabled = false;
                 document.getElementById('gameStatus').textContent = 'Enter survivors and click Start Game';
                 document.getElementById('winnerAnnouncement').style.display = 'none';
@@ -659,9 +680,7 @@
                     this.whirlpools.forEach(whirlpool => {
                         whirlpool.rotation += 0.05;
                         
-                        // Update spiral arms
                         whirlpool.spiralArms.forEach(arm => {
-                            // Add particles to spiral arms occasionally
                             if (Math.random() < 0.1) {
                                 arm.particles.push({
                                     distance: whirlpool.radius,
@@ -671,7 +690,6 @@
                                 });
                             }
                             
-                            // Update existing particles
                             arm.particles = arm.particles.filter(particle => {
                                 particle.distance -= 1;
                                 particle.angle += 0.1;
@@ -683,46 +701,21 @@
                     
                     // Update survivors
                     this.survivors.forEach(survivor => {
-                        survivor.update(this.sharks, this.whirlpools, this.canvas.width, this.canvas.height, this.teleportEffects);
+                        survivor.update(this.sharks, this.whirlpools, this.canvas.width, this.canvas.height, this.teleportEffects, this.survivors);
                     });
                     
-                    // Handle survivor collisions to prevent overlapping
+                    // Handle survivor collisions
                     this.handleSurvivorCollisions();
                     
                     // Update sharks
                     this.sharks.forEach(shark => {
-                        shark.update(this.survivors, this.sharks, this.canvas.width, this.canvas.height);
+                        shark.update(this.survivors, this.sharks, this.canvas.width, this.canvas.height, this.rushParticles);
                         
-                        // Create terrifying rush effects
-                        if (shark.rushing) {
-                            // Add screen shake when shark is rushing
-                            if (Math.random() < 0.3) {
-                                this.screenShake = Math.max(this.screenShake, 8);
-                            }
-                            
-                            // Create rush particles
-                            for (let i = 0; i < 3; i++) {
-                                this.rushParticles.push({
-                                    x: shark.x + (Math.random() - 0.5) * 30,
-                                    y: shark.y + (Math.random() - 0.5) * 30,
-                                    vx: -shark.vx * 0.3 + (Math.random() - 0.5) * 2,
-                                    vy: -shark.vy * 0.3 + (Math.random() - 0.5) * 2,
-                                    life: 20,
-                                    maxLife: 20,
-                                    alpha: 1,
-                                    size: Math.random() * 4 + 2
-                                });
-                            }
-                        }
-                        
-                        // Create dramatic eating effects for NORMAL sharks too
-                        if (shark.eating && !shark.wasRushingWhenEating) {
-                            // Add moderate screen shake for normal eating
+                        if (shark.eating) {
                             if (Math.random() < 0.3) {
                                 this.screenShake = Math.max(this.screenShake, 6);
                             }
                             
-                            // Create splash particles for normal eating
                             for (let i = 0; i < 3; i++) {
                                 this.rushParticles.push({
                                     x: shark.x + (Math.random() - 0.5) * 25,
@@ -734,29 +727,6 @@
                                     alpha: 1,
                                     size: Math.random() * 3 + 1,
                                     color: 'splash'
-                                });
-                            }
-                        }
-                        
-                        // Create dramatic eating effects for RUSHING sharks
-                        if (shark.eating && shark.wasRushingWhenEating) {
-                            // Add intense screen shake when eating
-                            if (Math.random() < 0.5) {
-                                this.screenShake = Math.max(this.screenShake, 15);
-                            }
-                            
-                            // Create blood particles
-                            for (let i = 0; i < 5; i++) {
-                                this.rushParticles.push({
-                                    x: shark.x + (Math.random() - 0.5) * 40,
-                                    y: shark.y + (Math.random() - 0.5) * 40,
-                                    vx: (Math.random() - 0.5) * 3,
-                                    vy: (Math.random() - 0.5) * 3,
-                                    life: 30,
-                                    maxLife: 30,
-                                    alpha: 1,
-                                    size: Math.random() * 6 + 3,
-                                    color: 'red'
                                 });
                             }
                         }
@@ -801,21 +771,16 @@
                     for (let j = 0; j < this.sharks.length; j++) {
                         const shark = this.sharks[j];
                         
-                        // Skip collision check if shark is already eating
                         if (shark.eating) continue;
                         
                         const dx = survivor.x - shark.x;
                         const dy = survivor.y - shark.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
                         
-                        // Account for realistic shark size
                         if (distance < shark.size * 1.5 + survivor.size) {
-                            // Trigger appropriate eating animation based on shark state
-                            const isRushing = shark.rushing;
-                            shark.startEating(isRushing);
-                            console.log(`${isRushing ? 'Rushing' : 'Normal'} shark caught survivor! Starting ${isRushing ? 'violent' : 'standard'} eating animation (v0.5 - whirlpool teleport!).`);
+                            shark.startEating();
+                            console.log('Shark caught survivor!');
                             
-                            // Remove survivor
                             this.survivors.splice(i, 1);
                             break;
                         }
@@ -824,7 +789,6 @@
             }
             
             handleSurvivorCollisions() {
-                // Check all pairs of survivors for overlap
                 for (let i = 0; i < this.survivors.length; i++) {
                     for (let j = i + 1; j < this.survivors.length; j++) {
                         const survivor1 = this.survivors[i];
@@ -836,7 +800,6 @@
                         const minDistance = survivor1.size + survivor2.size + 2;
                         
                         if (distance < minDistance) {
-                            // Push survivors apart
                             const overlap = minDistance - distance;
                             const separation = overlap / 2;
                             
@@ -881,7 +844,6 @@
             }
             
             draw() {
-                // Apply screen shake
                 let shakeX = 0, shakeY = 0;
                 if (this.screenShake > 0) {
                     shakeX = (Math.random() - 0.5) * this.screenShake;
@@ -893,18 +855,11 @@
                 
                 this.ctx.clearRect(-10, -10, this.canvas.width + 20, this.canvas.height + 20);
                 
-                // Draw water effect (lake background)
+                // Draw water effect
                 this.ctx.fillStyle = 'rgba(0, 116, 217, 0.1)';
                 this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
                 
-                // Draw terrifying rush overlay
-                const rushingSharks = this.sharks.filter(shark => shark.rushing);
-                if (rushingSharks.length > 0) {
-                    this.ctx.fillStyle = 'rgba(255, 0, 0, 0.1)';
-                    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-                }
-                
-                // Draw realistic whirlpools
+                // Draw whirlpools
                 this.whirlpools.forEach(whirlpool => {
                     this.ctx.save();
                     this.ctx.translate(whirlpool.x, whirlpool.y);
@@ -964,7 +919,7 @@
                         });
                     });
                     
-                    // Draw whirlpool symbol in center
+                    // Draw whirlpool symbol
                     this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
                     this.ctx.font = '20px Arial';
                     this.ctx.textAlign = 'center';
@@ -980,13 +935,11 @@
                     this.ctx.translate(effect.x, effect.y);
                     this.ctx.scale(effect.scale, effect.scale);
                     
-                    // Flash effect
                     this.ctx.fillStyle = effect.color;
                     this.ctx.beginPath();
                     this.ctx.arc(0, 0, 20, 0, Math.PI * 2);
                     this.ctx.fill();
                     
-                    // Sparkle particles
                     for (let i = 0; i < 8; i++) {
                         const angle = (i / 8) * Math.PI * 2;
                         const distance = 15 + Math.sin(effect.life * 0.2) * 5;
@@ -1009,6 +962,8 @@
                         color = `rgba(139, 0, 0, ${particle.alpha})`;
                     } else if (particle.color === 'splash') {
                         color = `rgba(135, 206, 235, ${particle.alpha})`;
+                    } else if (particle.color === 'rush') {
+                        color = `rgba(255, 107, 53, ${particle.alpha})`;
                     } else {
                         color = `rgba(255, 0, 0, ${particle.alpha})`;
                     }
@@ -1030,7 +985,7 @@
                 
                 this.ctx.restore();
                 
-                // Draw shark spawn countdown in center of game zone
+                // Draw countdown
                 if (this.gameRunning && !this.sharksSpawned) {
                     const elapsedTime = Date.now() - this.gameStartTime;
                     const remainingTime = Math.max(0, 3000 - elapsedTime);
@@ -1040,42 +995,36 @@
                         const centerX = this.canvas.width / 2;
                         const centerY = this.canvas.height / 2;
                         
-                        // Draw countdown background
                         this.ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
                         this.ctx.beginPath();
                         this.ctx.arc(centerX, centerY, 60, 0, Math.PI * 2);
                         this.ctx.fill();
                         
-                        // Draw countdown border
                         this.ctx.strokeStyle = '#ff6b6b';
                         this.ctx.lineWidth = 4;
                         this.ctx.beginPath();
                         this.ctx.arc(centerX, centerY, 60, 0, Math.PI * 2);
                         this.ctx.stroke();
                         
-                        // Draw countdown number
                         this.ctx.fillStyle = '#ff6b6b';
                         this.ctx.font = 'bold 48px Arial';
                         this.ctx.textAlign = 'center';
                         this.ctx.fillText(countdown.toString(), centerX, centerY + 15);
                         
-                        // Draw "SHARKS INCOMING" text
                         this.ctx.fillStyle = '#333';
                         this.ctx.font = 'bold 16px Arial';
                         this.ctx.fillText('SHARKS INCOMING', centerX, centerY - 80);
                     }
                 }
                 
-                // Draw winner text in center of map
+                // Draw winner text
                 if (this.winner && this.winnerDisplayTimer > 0) {
                     const centerX = this.canvas.width / 2;
                     const centerY = this.canvas.height / 2;
                     
-                    // Draw background
                     this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
                     this.ctx.fillRect(centerX - 200, centerY - 50, 400, 100);
                     
-                    // Draw winner text
                     this.ctx.fillStyle = '#FFD700';
                     this.ctx.font = 'bold 28px Arial';
                     this.ctx.textAlign = 'center';
@@ -1113,26 +1062,22 @@
                 this.directionChangeTimer = 0;
                 this.edgeTimer = 0;
                 this.size = 8;
-                // Whirlpool properties
                 this.inWhirlpool = null;
                 this.whirlpoolCenterTimer = 0; // Timer for staying in whirlpool center
-                // Teleportation properties
                 this.teleporting = false;
                 this.teleportTimer = 0;
             }
             
-            update(sharks, whirlpools, canvasWidth, canvasHeight, teleportEffects) {
+            update(sharks, whirlpools, canvasWidth, canvasHeight, teleportEffects, allSurvivors) {
                 // Handle teleportation state
                 if (this.teleporting) {
                     this.teleportTimer--;
                     if (this.teleportTimer <= 0) {
                         this.teleporting = false;
-                        // Teleport to completely random location
                         const margin = this.size + 20;
                         this.x = Math.random() * (canvasWidth - 2 * margin) + margin;
                         this.y = Math.random() * (canvasHeight - 2 * margin) + margin;
                         
-                        // Add teleport arrival effect
                         teleportEffects.push({
                             x: this.x,
                             y: this.y,
@@ -1143,14 +1088,13 @@
                             color: 'rgba(255, 0, 255, 0.8)'
                         });
                         
-                        // Reset movement
                         this.vx = (Math.random() - 0.5) * 2;
                         this.vy = (Math.random() - 0.5) * 2;
                         this.edgeTimer = 0;
                         this.whirlpoolCenterTimer = 0;
                         this.inWhirlpool = null;
                     }
-                    return; // Don't process other movement while teleporting
+                    return;
                 }
                 
                 // Random speed boost
@@ -1183,8 +1127,8 @@
                         if (distance <= whirlpool.centerRadius) {
                             this.whirlpoolCenterTimer++;
                             
-                            // If in center for 3 seconds (180 frames), teleport
-                            if (this.whirlpoolCenterTimer >= 180) {
+                            // If in center for 2 seconds (120 frames), teleport
+                            if (this.whirlpoolCenterTimer >= 120) {
                                 // Start teleportation with flash effect
                                 this.teleporting = true;
                                 this.teleportTimer = 30;
@@ -1210,12 +1154,21 @@
                             // Not in center, reset timer
                             this.whirlpoolCenterTimer = 0;
                             
-                            // Apply gentle swirling force toward center
-                            const centerForce = 0.02;
-                            const swirl = 0.03;
+                            // Apply gentle swirling force toward center (reduced speed)
+                            const centerForce = 0.01; // Reduced from 0.02
+                            const swirl = 0.015; // Reduced from 0.03
                             
-                            this.vx += -dx * centerForce + -dy * swirl;
-                            this.vy += -dy * centerForce + dx * swirl;
+                            // Apply forces more gently to avoid speeding up survivors
+                            this.vx = this.vx * 0.98 + (-dx * centerForce + -dy * swirl);
+                            this.vy = this.vy * 0.98 + (-dy * centerForce + dx * swirl);
+                            
+                            // Cap the speed to prevent acceleration
+                            const currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                            const maxSpeed = this.baseSpeed * (this.boosted ? 2.0 : 1.0);
+                            if (currentSpeed > maxSpeed) {
+                                this.vx = (this.vx / currentSpeed) * maxSpeed;
+                                this.vy = (this.vy / currentSpeed) * maxSpeed;
+                            }
                         }
                         
                         return; // Skip normal movement while in whirlpool
@@ -1260,16 +1213,15 @@
                         const oppositeX = (dx / distance) * speed;
                         const oppositeY = (dy / distance) * speed;
                         
-                        if (Math.random() < 0.8) { // 80% chance to move away
+                        if (Math.random() < 0.8) {
                             this.vx = oppositeX;
                             this.vy = oppositeY;
-                        } else { // 20% chance for random direction
+                        } else {
                             this.vx = (Math.random() - 0.5) * speed * 2;
                             this.vy = (Math.random() - 0.5) * speed * 2;
                         }
                     }
                 } else {
-                    // Random direction change
                     this.directionChangeTimer++;
                     if (this.directionChangeTimer > 80) {
                         this.vx = (Math.random() - 0.5) * speed * 2;
@@ -1289,13 +1241,10 @@
                 
                 if (nearEdge) {
                     this.edgeTimer++;
-                    // If near edges for 2 seconds, start teleportation
                     if (this.edgeTimer >= 120) {
-                        // Start teleportation with flash effect
                         this.teleporting = true;
                         this.teleportTimer = 30;
                         
-                        // Add teleport departure effect
                         teleportEffects.push({
                             x: this.x,
                             y: this.y,
@@ -1334,24 +1283,20 @@
             }
             
             draw(ctx) {
-                // Don't draw if teleporting (invisible during teleport)
                 if (this.teleporting) {
                     return;
                 }
                 
-                // Always use assigned color
                 ctx.fillStyle = this.color;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
                 
-                // Draw name and number
                 ctx.fillStyle = 'white';
                 ctx.font = '10px Arial';
                 ctx.textAlign = 'center';
                 ctx.fillText(`${this.name} #${this.number}`, this.x, this.y - 15);
                 
-                // Draw boost effect
                 if (this.boosted) {
                     ctx.strokeStyle = '#FFC107';
                     ctx.lineWidth = 3;
@@ -1368,7 +1313,7 @@
                 
                 // Draw whirlpool center effect when in center
                 if (this.inWhirlpool && this.whirlpoolCenterTimer > 0) {
-                    const intensity = Math.min(this.whirlpoolCenterTimer / 180, 1);
+                    const intensity = Math.min(this.whirlpoolCenterTimer / 120, 1);
                     ctx.strokeStyle = `rgba(0, 255, 255, ${intensity})`;
                     ctx.lineWidth = 3;
                     ctx.setLineDash([3, 3]);
@@ -1378,13 +1323,12 @@
                     ctx.setLineDash([]);
                     
                     // Draw countdown indicator
-                    const timeLeft = Math.ceil((180 - this.whirlpoolCenterTimer) / 60);
+                    const timeLeft = Math.ceil((120 - this.whirlpoolCenterTimer) / 60);
                     ctx.fillStyle = `rgba(0, 255, 255, ${intensity})`;
                     ctx.font = 'bold 12px Arial';
                     ctx.fillText(`${timeLeft}`, this.x, this.y + 25);
                 }
                 
-                // Draw edge warning when near edges
                 if (this.edgeTimer > 0 && !this.teleporting) {
                     const warningIntensity = Math.min(this.edgeTimer / 120, 1);
                     ctx.strokeStyle = `rgba(255, 0, 255, ${warningIntensity})`;
@@ -1395,7 +1339,6 @@
                     ctx.stroke();
                     ctx.setLineDash([]);
                     
-                    // Draw countdown indicator
                     const timeLeft = Math.ceil((120 - this.edgeTimer) / 60);
                     ctx.fillStyle = `rgba(255, 0, 255, ${warningIntensity})`;
                     ctx.font = 'bold 12px Arial';
@@ -1405,7 +1348,7 @@
         }
         
         class Shark {
-            constructor() {
+            constructor(sharkImage) {
                 this.x = 0;
                 this.y = 0;
                 this.vx = 0;
@@ -1413,23 +1356,32 @@
                 this.targetVx = 0;
                 this.targetVy = 0;
                 this.baseSpeed = 3.0;
-                this.rushing = false;
-                this.rushTimer = 0;
                 this.eating = false;
                 this.eatingTimer = 0;
-                this.wasRushingWhenEating = false;
                 this.jumpHeight = 0;
-                this.size = 12;
+                this.size = 20; // Increased size for SVG shark
                 this.target = null;
                 this.targetChangeTimer = 0;
                 this.acceleration = 0.05;
                 this.waveTimer = 0;
+                this.sharkImage = sharkImage;
+                this.imageLoaded = false;
+                
+                // Rushing mechanics
+                this.rushing = false;
+                this.rushTimer = 0;
+                this.rushDirection = { x: 0, y: 0 };
+                this.rushSpeed = 6.0; // 2x base speed
+                
+                // Check if image is already loaded
+                if (this.sharkImage && this.sharkImage.complete) {
+                    this.imageLoaded = true;
+                }
             }
             
-            update(survivors, allSharks, canvasWidth, canvasHeight) {
+            update(survivors, allSharks, canvasWidth, canvasHeight, rushParticles) {
                 this.waveTimer += 0.2;
                 
-                // Handle eating state
                 if (this.eating) {
                     this.eatingTimer--;
                     
@@ -1438,7 +1390,6 @@
                     this.targetVx = 0;
                     this.targetVy = 0;
                     
-                    // Enhanced jump animation - FASTER (60 frames = 1 second)
                     const totalFrames = 60;
                     const phase1 = totalFrames * 0.25;
                     const phase2 = totalFrames * 0.5;
@@ -1457,7 +1408,7 @@
                     if (this.eatingTimer <= 0) {
                         this.eating = false;
                         this.jumpHeight = 0;
-                        console.log("Shark finished eating (v0.5 - whirlpool teleport!) - resuming movement");
+                        console.log("Shark finished eating - resuming movement");
                         const randomAngle = Math.random() * Math.PI * 2;
                         this.vx = Math.cos(randomAngle) * this.baseSpeed;
                         this.vy = Math.sin(randomAngle) * this.baseSpeed;
@@ -1466,22 +1417,62 @@
                     return;
                 }
                 
-                // Rush ability
+                // Handle rushing state
                 if (this.rushing) {
                     this.rushTimer--;
+                    
+                    // Move in the same direction at 2x speed
+                    this.vx = this.rushDirection.x * this.rushSpeed;
+                    this.vy = this.rushDirection.y * this.rushSpeed;
+                    
+                    // Add rush particles
+                    if (Math.random() < 0.4) {
+                        rushParticles.push({
+                            x: this.x + (Math.random() - 0.5) * 20,
+                            y: this.y + (Math.random() - 0.5) * 20,
+                            vx: -this.vx * 0.3 + (Math.random() - 0.5) * 2,
+                            vy: -this.vy * 0.3 + (Math.random() - 0.5) * 2,
+                            life: 20,
+                            maxLife: 20,
+                            alpha: 1,
+                            size: Math.random() * 4 + 2,
+                            color: 'rush'
+                        });
+                    }
+                    
                     if (this.rushTimer <= 0) {
                         this.rushing = false;
+                        // Resume normal movement
+                        this.vx *= 0.5; // Slow down
+                        this.vy *= 0.5;
+                        console.log("Shark finished rushing");
                     }
-                } else if (Math.random() < 0.002) {
-                    this.rushing = true;
-                    this.rushTimer = 30;
-                }
-                
-                const speed = this.rushing ? this.baseSpeed * 15 : this.baseSpeed;
-                
-                this.targetChangeTimer++;
-                
-                if (!this.rushing) {
+                } else {
+                    // Check for rush trigger (5% chance every frame when not eating or rushing)
+                    if (Math.random() < 0.005) {
+                        this.rushing = true;
+                        this.rushTimer = 120; // 2 seconds at 60fps
+                        
+                        // Set rush direction based on current movement or random
+                        if (Math.abs(this.vx) > 0.1 || Math.abs(this.vy) > 0.1) {
+                            const currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                            this.rushDirection.x = this.vx / currentSpeed;
+                            this.rushDirection.y = this.vy / currentSpeed;
+                        } else {
+                            const randomAngle = Math.random() * Math.PI * 2;
+                            this.rushDirection.x = Math.cos(randomAngle);
+                            this.rushDirection.y = Math.sin(randomAngle);
+                        }
+                        
+                        console.log("Shark started rushing!");
+                        return; // Skip normal movement logic
+                    }
+                    
+                    // Normal shark movement logic
+                    const speed = this.baseSpeed;
+                    
+                    this.targetChangeTimer++;
+                    
                     if (this.targetChangeTimer > 180 + Math.random() * 180) {
                         this.target = null;
                         this.targetChangeTimer = 0;
@@ -1535,30 +1526,13 @@
                     
                     this.vx += (this.targetVx - this.vx) * this.acceleration;
                     this.vy += (this.targetVy - this.vy) * this.acceleration;
-                } else {
-                    if (this.target && !this.target.teleporting) {
-                        const dx = this.target.x - this.x;
-                        const dy = this.target.y - this.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        
-                        if (distance > 1.0) {
-                            this.vx = (dx / distance) * speed;
-                            this.vy = (dy / distance) * speed;
-                        } else {
-                            const currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                            if (currentSpeed > 0.1) {
-                                this.vx = (this.vx / currentSpeed) * speed;
-                                this.vy = (this.vy / currentSpeed) * speed;
-                            }
-                        }
-                    }
                 }
                 
                 // Update position
                 this.x += this.vx;
                 this.y += this.vy;
                 
-                // Enhanced boundary enforcement for sharks
+                // Boundary handling
                 const effectiveSize = this.size * 1.5;
                 const margin = effectiveSize + 5;
                 
@@ -1566,494 +1540,158 @@
                     this.x = margin;
                     this.vx = Math.abs(this.vx) * 0.8;
                     this.vy += (Math.random() - 0.5) * 0.3;
+                    if (this.rushing) {
+                        this.rushDirection.x = Math.abs(this.rushDirection.x);
+                    }
                 } else if (this.x >= canvasWidth - margin) {
                     this.x = canvasWidth - margin;
                     this.vx = -Math.abs(this.vx) * 0.8;
                     this.vy += (Math.random() - 0.5) * 0.3;
+                    if (this.rushing) {
+                        this.rushDirection.x = -Math.abs(this.rushDirection.x);
+                    }
                 }
                 
                 if (this.y <= margin) {
                     this.y = margin;
                     this.vy = Math.abs(this.vy) * 0.8;
                     this.vx += (Math.random() - 0.5) * 0.3;
+                    if (this.rushing) {
+                        this.rushDirection.y = Math.abs(this.rushDirection.y);
+                    }
                 } else if (this.y >= canvasHeight - margin) {
                     this.y = canvasHeight - margin;
                     this.vy = -Math.abs(this.vy) * 0.8;
                     this.vx += (Math.random() - 0.5) * 0.3;
+                    if (this.rushing) {
+                        this.rushDirection.y = -Math.abs(this.rushDirection.y);
+                    }
                 }
             }
             
-            startEating(wasRushing = false) {
+            startEating() {
                 this.eating = true;
-                this.wasRushingWhenEating = wasRushing;
-                this.eatingTimer = 60; // 1 second eating animation
+                this.eatingTimer = 60;
                 this.jumpHeight = 0;
+                this.rushing = false; // Stop rushing when eating
+                this.rushTimer = 0;
                 
                 this.vx = 0;
                 this.vy = 0;
                 this.targetVx = 0;
                 this.targetVy = 0;
                 
-                this.rushing = false;
-                this.rushTimer = 0;
-                
-                console.log(`${wasRushing ? 'Rushing' : 'Normal'} shark started eating (v0.5 - whirlpool teleport!) - all movement stopped!`);
+                console.log("Shark started eating!");
             }
             
             draw(ctx) {
-                // Calculate angle based on velocity for realistic orientation
-                const angle = Math.atan2(this.vy, this.vx);
-                
                 ctx.save();
                 ctx.translate(this.x, this.y - this.jumpHeight);
                 
-                if (this.eating) {
-                    // Different eating animations for normal vs rushing sharks
-                    ctx.rotate(angle);
+                // Apply visual effects for rushing
+                if (this.rushing) {
+                    // Add orange glow effect for rushing
+                    ctx.shadowColor = '#FF6B35';
+                    ctx.shadowBlur = 20;
+                    ctx.shadowOffsetX = 0;
+                    ctx.shadowOffsetY = 0;
                     
-                    if (this.wasRushingWhenEating) {
-                        // RUSHING SHARK EATING - More dramatic and violent
-                        const bodyColor = '#1C1C1C';
-                        const bellyColor = '#8B0000';
-                        const finColor = '#000000';
-                        
-                        // Larger, more violent body when rush-eating
-                        ctx.fillStyle = bodyColor;
-                        ctx.beginPath();
-                        ctx.ellipse(0, 0, this.size * 2.5, this.size * 1.5, 0, 0, Math.PI * 2);
-                        ctx.fill();
-                        
-                        // Blood-red belly
-                        ctx.fillStyle = bellyColor;
-                        ctx.beginPath();
-                        ctx.ellipse(0, this.size * 0.3, this.size * 2.3, this.size * 1.0, 0, 0, Math.PI * 2);
-                        ctx.fill();
-                        
-                        // Massive head for rush-eating
-                        ctx.fillStyle = bodyColor;
-                        ctx.beginPath();
-                        ctx.moveTo(this.size * 2.5, 0);
-                        ctx.lineTo(this.size * 4.0, -this.size * 0.6);
-                        ctx.lineTo(this.size * 4.5, 0);
-                        ctx.lineTo(this.size * 4.0, this.size * 0.6);
-                        ctx.closePath();
-                        ctx.fill();
-                        
-                        // Larger, more prominent teeth for rush-eating
-                        ctx.fillStyle = '#FFFAF0';
-                        for (let i = 0; i < 15; i++) {
-                            // Upper teeth - larger and more menacing
-                            ctx.beginPath();
-                            ctx.moveTo(this.size * 3.5 - i * 5, -4);
-                            ctx.lineTo(this.size * 3.5 - i * 5 + 2, -18);
-                            ctx.lineTo(this.size * 3.5 - i * 5 + 4, -4);
-                            ctx.closePath();
-                            ctx.fill();
-                            
-                            // Lower teeth - larger and more menacing
-                            ctx.beginPath();
-                            ctx.moveTo(this.size * 3.5 - i * 5, 4);
-                            ctx.lineTo(this.size * 3.5 - i * 5 + 2, 18);
-                            ctx.lineTo(this.size * 3.5 - i * 5 + 4, 4);
-                            ctx.closePath();
-                            ctx.fill();
-                        }
-                        
-                        // Intense blood effect for rush-eating
-                        ctx.fillStyle = 'rgba(139, 0, 0, 0.9)';
-                        ctx.beginPath();
-                        ctx.arc(this.size * 4.0, 0, 15, 0, Math.PI * 2);
-                        ctx.fill();
-                        
-                    } else {
-                        // NORMAL SHARK EATING - Controlled and realistic feeding behavior
-                        const bodyColor = '#708090';
-                        const bellyColor = '#F0F8FF';
-                        const finColor = '#2F4F4F';
-                        
-                        // Normal-sized body when eating normally
-                        ctx.fillStyle = bodyColor;
-                        ctx.beginPath();
-                        ctx.ellipse(0, 0, this.size * 1.8, this.size * 1.1, 0, 0, Math.PI * 2);
-                        ctx.fill();
-                        
-                        // Light belly
-                        ctx.fillStyle = bellyColor;
-                        ctx.beginPath();
-                        ctx.ellipse(0, this.size * 0.2, this.size * 1.6, this.size * 0.7, 0, 0, Math.PI * 2);
-                        ctx.fill();
-                        
-                        // Normal shark head
-                        ctx.fillStyle = bodyColor;
-                        ctx.beginPath();
-                        ctx.moveTo(this.size * 1.8, 0);
-                        ctx.lineTo(this.size * 2.6, -this.size * 0.3);
-                        ctx.lineTo(this.size * 2.8, 0);
-                        ctx.lineTo(this.size * 2.6, this.size * 0.3);
-                        ctx.closePath();
-                        ctx.fill();
-                        
-                        // Normal-sized teeth
-                        ctx.fillStyle = '#FFFAF0';
-                        for (let i = 0; i < 8; i++) {
-                            // Upper teeth - smaller
-                            ctx.beginPath();
-                            ctx.moveTo(this.size * 2.5 - i * 3, -2);
-                            ctx.lineTo(this.size * 2.5 - i * 3 + 1, -8);
-                            ctx.lineTo(this.size * 2.5 - i * 3 + 2, -2);
-                            ctx.closePath();
-                            ctx.fill();
-                            
-                            // Lower teeth - smaller
-                            ctx.beginPath();
-                            ctx.moveTo(this.size * 2.5 - i * 3, 2);
-                            ctx.lineTo(this.size * 2.5 - i * 3 + 1, 8);
-                            ctx.lineTo(this.size * 2.5 - i * 3 + 2, 2);
-                            ctx.closePath();
-                            ctx.fill();
-                        }
-                        
-                        // Light blood effect for normal eating
-                        ctx.fillStyle = 'rgba(205, 92, 92, 0.4)';
-                        ctx.beginPath();
-                        ctx.arc(this.size * 2.6, 0, 5, 0, Math.PI * 2);
-                        ctx.fill();
-                        
-                        // Normal dorsal fin
-                        ctx.fillStyle = finColor;
-                        ctx.beginPath();
-                        ctx.moveTo(-this.size * 0.6, 0);
-                        ctx.lineTo(-this.size * 0.1, -this.size * 1.6);
-                        ctx.lineTo(this.size * 0.6, -this.size * 0.4);
-                        ctx.closePath();
-                        ctx.fill();
-                        
-                        // Normal pectoral fins
-                        ctx.beginPath();
-                        ctx.moveTo(this.size * 0.3, this.size * 0.8);
-                        ctx.lineTo(this.size * 0.1, this.size * 1.6);
-                        ctx.lineTo(this.size * 1.2, this.size * 0.9);
-                        ctx.closePath();
-                        ctx.fill();
-                        
-                        ctx.beginPath();
-                        ctx.moveTo(this.size * 0.3, -this.size * 0.8);
-                        ctx.lineTo(this.size * 0.1, -this.size * 1.6);
-                        ctx.lineTo(this.size * 1.2, -this.size * 0.9);
-                        ctx.closePath();
-                        ctx.fill();
+                    // Draw rushing outline
+                    ctx.strokeStyle = '#FFD700';
+                    ctx.lineWidth = 4;
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size + 8, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+                
+                // If SVG image is loaded and ready, use it
+                if (this.sharkImage && this.sharkImage.complete) {
+                    const sharkWidth = this.size * 4; // Make shark bigger than before
+                    const sharkHeight = this.size * 2.5;
+                    
+                    // Flip horizontally based on direction (inverted condition)
+                    const horizontalFlip = this.vx < 0 ? 1 : -1; // Inverted: normal when moving left, flipped when moving right
+                    ctx.scale(horizontalFlip, 1); // Only horizontal flip, no vertical flip
+                    
+                    // Apply color tint for rushing
+                    if (this.rushing) {
+                        ctx.filter = 'hue-rotate(20deg) saturate(1.5) brightness(1.2)';
                     }
                     
-                    // Tail fin - different colors for normal vs rushing
-                    ctx.fillStyle = this.wasRushingWhenEating ? '#000000' : '#2F4F4F';
-                    ctx.beginPath();
-                    ctx.moveTo(-this.size * 2.0, 0);
-                    if (this.wasRushingWhenEating) {
-                        // Larger tail for rushing shark
-                        ctx.lineTo(-this.size * 3.8, -this.size * 1.2);
-                        ctx.lineTo(-this.size * 3.2, -this.size * 0.2);
-                        ctx.lineTo(-this.size * 3.0, 0);
-                        ctx.lineTo(-this.size * 3.2, this.size * 0.2);
-                        ctx.lineTo(-this.size * 3.8, this.size * 1.2);
-                    } else {
-                        // Smaller tail for normal shark
-                        ctx.lineTo(-this.size * 3.0, -this.size * 0.8);
-                        ctx.lineTo(-this.size * 2.6, -this.size * 0.1);
-                        ctx.lineTo(-this.size * 2.4, 0);
-                        ctx.lineTo(-this.size * 2.6, this.size * 0.1);
-                        ctx.lineTo(-this.size * 3.0, this.size * 0.8);
-                    }
-                    ctx.closePath();
-                    ctx.fill();
+                    // Draw the SVG shark
+                    ctx.drawImage(
+                        this.sharkImage,
+                        -sharkWidth/2,
+                        -sharkHeight/2,
+                        sharkWidth,
+                        sharkHeight
+                    );
                     
-                    // Gill slits - different for normal vs rushing
-                    ctx.strokeStyle = this.wasRushingWhenEating ? '#8B0000' : '#000';
-                    ctx.lineWidth = 1;
-                    const gillCount = this.wasRushingWhenEating ? 5 : 4;
-                    for (let i = 0; i < gillCount; i++) {
-                        ctx.beginPath();
-                        const baseX = this.wasRushingWhenEating ? 0.8 : 0.6;
-                        const spacing = this.wasRushingWhenEating ? 0.15 : 0.12;
-                        ctx.moveTo(this.size * (baseX - i * spacing), -this.size * 0.5);
-                        ctx.lineTo(this.size * (baseX + 0.1 - i * spacing), -this.size * 0.2);
-                        ctx.stroke();
-                    }
-                    
-                    // Eyes - different colors and sizes for normal vs rushing eating
-                    if (this.wasRushingWhenEating) {
-                        // Angry red eyes for rushing
-                        ctx.fillStyle = '#8B0000';
-                        ctx.beginPath();
-                        ctx.arc(this.size * 1.5, -this.size * 0.5, 6, 0, Math.PI * 2);
-                        ctx.fill();
-                        ctx.beginPath();
-                        ctx.arc(this.size * 1.5, this.size * 0.5, 6, 0, Math.PI * 2);
-                        ctx.fill();
-                    } else {
-                        // Normal black eyes
-                        ctx.fillStyle = '#000';
-                        ctx.beginPath();
-                        ctx.arc(this.size * 1.3, -this.size * 0.4, 4, 0, Math.PI * 2);
-                        ctx.fill();
-                        ctx.beginPath();
-                        ctx.arc(this.size * 1.3, this.size * 0.4, 4, 0, Math.PI * 2);
-                        ctx.fill();
-                    }
-                    
-                    // Eye reflections
-                    ctx.fillStyle = '#FFF';
-                    if (this.wasRushingWhenEating) {
-                        ctx.beginPath();
-                        ctx.arc(this.size * 1.5 + 1, -this.size * 0.5 - 1, 2, 0, Math.PI * 2);
-                        ctx.fill();
-                        ctx.beginPath();
-                        ctx.arc(this.size * 1.5 + 1, this.size * 0.5 - 1, 2, 0, Math.PI * 2);
-                        ctx.fill();
-                    } else {
-                        ctx.beginPath();
-                        ctx.arc(this.size * 1.3 + 1, -this.size * 0.4 - 1, 1.5, 0, Math.PI * 2);
-                        ctx.fill();
-                        ctx.beginPath();
-                        ctx.arc(this.size * 1.3 + 1, this.size * 0.4 - 1, 1.5, 0, Math.PI * 2);
-                        ctx.fill();
-                    }
-                    
-                } else if (this.rushing) {
-                    // RUSHING SHARK - Head and aggressive features visible
-                    ctx.rotate(angle);
-                    
-                    // Darker, more aggressive colors when rushing
-                    const rushBodyColor = '#2F2F2F';
-                    const rushFinColor = '#1a1a1a';
-                    
-                    // Head and upper body visible when rushing
-                    ctx.fillStyle = rushBodyColor;
-                    ctx.beginPath();
-                    ctx.ellipse(0, 0, this.size * 1.8, this.size * 1.0, 0, 0, Math.PI * 2);
-                    ctx.fill();
-                    
-                    // Pointed snout
-                    ctx.beginPath();
-                    ctx.moveTo(this.size * 1.8, 0);
-                    ctx.lineTo(this.size * 2.8, -this.size * 0.3);
-                    ctx.lineTo(this.size * 2.8, this.size * 0.3);
-                    ctx.closePath();
-                    ctx.fill();
-                    
-                    // Dorsal fin cutting through water
-                    ctx.fillStyle = rushFinColor;
-                    ctx.beginPath();
-                    ctx.moveTo(-this.size * 0.5, 0);
-                    ctx.lineTo(-this.size * 0.1, -this.size * 1.8);
-                    ctx.lineTo(this.size * 0.5, -this.size * 0.4);
-                    ctx.closePath();
-                    ctx.fill();
-                    
-                    // Eyes (angry red when rushing)
-                    ctx.fillStyle = '#8B0000';
-                    ctx.beginPath();
-                    ctx.arc(this.size * 1.2, -this.size * 0.3, 3, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.beginPath();
-                    ctx.arc(this.size * 1.2, this.size * 0.3, 3, 0, Math.PI * 2);
-                    ctx.fill();
-                    
-                    // Teeth visible during rush
-                    ctx.fillStyle = '#FFFAF0';
-                    for (let i = 0; i < 8; i++) {
-                        ctx.beginPath();
-                        ctx.moveTo(this.size * 2.4 - i * 3, -2);
-                        ctx.lineTo(this.size * 2.4 - i * 3 + 1, -8);
-                        ctx.lineTo(this.size * 2.4 - i * 3 + 2, -2);
-                        ctx.closePath();
-                        ctx.fill();
-                        
-                        ctx.beginPath();
-                        ctx.moveTo(this.size * 2.4 - i * 3, 2);
-                        ctx.lineTo(this.size * 2.4 - i * 3 + 1, 8);
-                        ctx.lineTo(this.size * 2.4 - i * 3 + 2, 2);
-                        ctx.closePath();
-                        ctx.fill();
-                    }
+                    ctx.filter = 'none'; // Reset filter
                     
                 } else {
-                    // NORMAL SHARK - Only fins and tail visible (realistic underwater)
-                    ctx.rotate(angle);
+                    // Fallback to simple circle if SVG not loaded
+                    let fillColor = this.eating ? '#8B0000' : '#696969';
+                    if (this.rushing) {
+                        fillColor = '#FF6B35';
+                    }
                     
-                    // Realistic grey shark colors
-                    const normalBodyColor = '#696969';
-                    const normalFinColor = '#2F4F4F';
-                    
-                    // Dorsal fin only (most visible part of swimming shark)
-                    ctx.fillStyle = normalFinColor;
+                    ctx.fillStyle = fillColor;
                     ctx.beginPath();
-                    ctx.moveTo(-this.size * 0.5, 0);
-                    ctx.lineTo(-this.size * 0.1, -this.size * 1.8);
-                    ctx.lineTo(this.size * 0.5, -this.size * 0.4);
-                    ctx.closePath();
+                    ctx.arc(0, 0, this.size, 0, Math.PI * 2);
                     ctx.fill();
                     
-                    // Tail fin tip breaking surface
-                    ctx.fillStyle = normalBodyColor;
+                    // Simple shark fin indicator
+                    ctx.fillStyle = '#2F4F4F';
                     ctx.beginPath();
-                    ctx.moveTo(-this.size * 1.5, 0);
-                    ctx.lineTo(-this.size * 2.5, -this.size * 0.8);
-                    ctx.lineTo(-this.size * 2.2, 0);
-                    ctx.lineTo(-this.size * 2.5, this.size * 0.8);
+                    ctx.moveTo(this.size, 0);
+                    ctx.lineTo(this.size * 1.5, -this.size * 0.5);
+                    ctx.lineTo(this.size * 1.8, 0);
+                    ctx.lineTo(this.size * 1.5, this.size * 0.5);
                     ctx.closePath();
-                    ctx.fill();
-                    
-                    // Subtle body outline under water
-                    ctx.fillStyle = 'rgba(105, 105, 105, 0.3)';
-                    ctx.beginPath();
-                    ctx.ellipse(0, this.size * 0.5, this.size * 1.2, this.size * 0.6, 0, 0, Math.PI * 2);
                     ctx.fill();
                 }
                 
                 ctx.restore();
                 
-                // Draw realistic water waves around shark
-                this.drawWaves(ctx);
-                
-                // Draw rush effects for rushing sharks
-                if (this.rushing && !this.eating) {
-                    // Multiple intense glow rings
-                    for (let i = 0; i < 4; i++) {
-                        ctx.strokeStyle = `rgba(255, 0, 0, ${0.8 - i * 0.2})`;
-                        ctx.lineWidth = 4 + i * 2;
-                        ctx.beginPath();
-                        ctx.arc(this.x, this.y, this.size * 2 + i * 8, 0, Math.PI * 2);
-                        ctx.stroke();
-                    }
-                    
-                    // Pulsing outer ring
-                    const pulseSize = Math.sin(Date.now() * 0.02) * 10;
-                    ctx.strokeStyle = `rgba(255, 0, 0, 0.9)`;
-                    ctx.lineWidth = 6;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size * 3 + pulseSize, 0, Math.PI * 2);
-                    ctx.stroke();
-                    
-                    // Electric/energy effect
-                    ctx.strokeStyle = `rgba(255, 255, 0, 0.7)`;
-                    ctx.lineWidth = 2;
-                    for (let i = 0; i < 8; i++) {
-                        const angle = (i / 8) * Math.PI * 2;
-                        const startX = this.x + Math.cos(angle) * this.size * 2;
-                        const startY = this.y + Math.sin(angle) * this.size * 2;
-                        const endX = this.x + Math.cos(angle) * (this.size * 2.5 + Math.random() * 10);
-                        const endY = this.y + Math.sin(angle) * (this.size * 2.5 + Math.random() * 10);
-                        
-                        ctx.beginPath();
-                        ctx.moveTo(startX, startY);
-                        ctx.lineTo(endX, endY);
-                        ctx.stroke();
-                    }
-                    
-                    // Intimidating red trail
-                    ctx.strokeStyle = 'rgba(255, 0, 0, 0.6)';
-                    ctx.lineWidth = 12;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size * 3.5, 0, Math.PI * 2);
-                    ctx.stroke();
-                    
-                    // Blood-red core
-                    ctx.fillStyle = 'rgba(139, 0, 0, 0.3)';
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
-                    ctx.fill();
+                // Draw waves (less intense when rushing to avoid visual clutter)
+                if (!this.rushing) {
+                    this.drawWaves(ctx);
+                } else {
+                    this.drawRushWaves(ctx);
                 }
                 
-                // Draw enhanced splash effects when eating
+                // Draw eating effects
                 if (this.eating) {
-                    if (this.wasRushingWhenEating) {
-                        // RUSHING SHARK EATING - Violent splash effects
-                        // Water splash particles
-                        for (let i = 0; i < 15; i++) {
-                            const angle = (i / 15) * Math.PI * 2;
-                            const distance = this.size * (2 + Math.random() * 2);
-                            const splashX = this.x + Math.cos(angle) * distance;
-                            const splashY = this.y + Math.sin(angle) * distance;
-                            
-                            ctx.fillStyle = `rgba(135, 206, 235, ${0.8 - Math.random() * 0.4})`;
-                            ctx.beginPath();
-                            ctx.arc(splashX, splashY, Math.random() * 8 + 3, 0, Math.PI * 2);
-                            ctx.fill();
-                        }
+                    for (let i = 0; i < 8; i++) {
+                        const angle = (i / 8) * Math.PI * 2;
+                        const distance = this.size * (1.5 + Math.random() * 1);
+                        const splashX = this.x + Math.cos(angle) * distance;
+                        const splashY = this.y + Math.sin(angle) * distance;
                         
-                        // Blood drops around eating area
-                        for (let i = 0; i < 8; i++) {
-                            const angle = Math.random() * Math.PI * 2;
-                            const distance = Math.random() * this.size * 1.5;
-                            const dropX = this.x + Math.cos(angle) * distance;
-                            const dropY = this.y + Math.sin(angle) * distance;
-                            
-                            ctx.fillStyle = `rgba(139, 0, 0, ${0.7 - Math.random() * 0.3})`;
-                            ctx.beginPath();
-                            ctx.arc(dropX, dropY, Math.random() * 4 + 1, 0, Math.PI * 2);
-                            ctx.fill();
-                        }
-                        
-                        // Dramatic feeding frenzy circle
-                        ctx.strokeStyle = `rgba(139, 0, 0, 0.8)`;
-                        ctx.lineWidth = 4;
+                        ctx.fillStyle = `rgba(135, 206, 235, ${0.6 - Math.random() * 0.3})`;
                         ctx.beginPath();
-                        ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
-                        ctx.stroke();
+                        ctx.arc(splashX, splashY, Math.random() * 5 + 2, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                    
+                    for (let i = 0; i < 4; i++) {
+                        const angle = Math.random() * Math.PI * 2;
+                        const distance = Math.random() * this.size * 1.0;
+                        const dropX = this.x + Math.cos(angle) * distance;
+                        const dropY = this.y + Math.sin(angle) * distance;
                         
-                        ctx.strokeStyle = `rgba(255, 0, 0, 0.6)`;
-                        ctx.lineWidth = 2;
+                        ctx.fillStyle = `rgba(139, 0, 0, ${0.5 - Math.random() * 0.2})`;
                         ctx.beginPath();
-                        ctx.arc(this.x, this.y, this.size * 5, 0, Math.PI * 2);
-                        ctx.stroke();
-                    } else {
-                        // NORMAL SHARK EATING - Controlled splash effects
-                        // Moderate water splash particles
-                        for (let i = 0; i < 8; i++) {
-                            const angle = (i / 8) * Math.PI * 2;
-                            const distance = this.size * (1.5 + Math.random() * 1);
-                            const splashX = this.x + Math.cos(angle) * distance;
-                            const splashY = this.y + Math.sin(angle) * distance;
-                            
-                            ctx.fillStyle = `rgba(135, 206, 235, ${0.6 - Math.random() * 0.3})`;
-                            ctx.beginPath();
-                            ctx.arc(splashX, splashY, Math.random() * 5 + 2, 0, Math.PI * 2);
-                            ctx.fill();
-                        }
-                        
-                        // Small blood drops around eating area
-                        for (let i = 0; i < 4; i++) {
-                            const angle = Math.random() * Math.PI * 2;
-                            const distance = Math.random() * this.size * 1.0;
-                            const dropX = this.x + Math.cos(angle) * distance;
-                            const dropY = this.y + Math.sin(angle) * distance;
-                            
-                            ctx.fillStyle = `rgba(139, 0, 0, ${0.5 - Math.random() * 0.2})`;
-                            ctx.beginPath();
-                            ctx.arc(dropX, dropY, Math.random() * 2 + 1, 0, Math.PI * 2);
-                            ctx.fill();
-                        }
-                        
-                        // Controlled feeding circle
-                        ctx.strokeStyle = `rgba(139, 0, 0, 0.5)`;
-                        ctx.lineWidth = 2;
-                        ctx.beginPath();
-                        ctx.arc(this.x, this.y, this.size * 2.5, 0, Math.PI * 2);
-                        ctx.stroke();
-                        
-                        ctx.strokeStyle = `rgba(135, 206, 235, 0.4)`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
-                        ctx.stroke();
+                        ctx.arc(dropX, dropY, Math.random() * 2 + 1, 0, Math.PI * 2);
+                        ctx.fill();
                     }
                 }
             }
             
             drawWaves(ctx) {
-                // Draw water waves around shark
-                const waveCount = this.rushing ? 6 : 3;
-                const waveIntensity = this.rushing ? 1.5 : 1.0;
+                const waveCount = 3;
+                const waveIntensity = 1.0;
                 
                 for (let i = 0; i < waveCount; i++) {
                     const waveRadius = this.size * (1.5 + i * 0.5) * waveIntensity;
@@ -2064,10 +1702,39 @@
                     ctx.lineWidth = 2;
                     ctx.setLineDash([]);
                     
-                    // Create wavy circle
                     ctx.beginPath();
                     for (let angle = 0; angle < Math.PI * 2; angle += 0.1) {
                         const wave = Math.sin(angle * 4 + waveOffset) * 3;
+                        const x = this.x + Math.cos(angle) * (waveRadius + wave);
+                        const y = this.y + Math.sin(angle) * (waveRadius + wave);
+                        
+                        if (angle === 0) {
+                            ctx.moveTo(x, y);
+                        } else {
+                            ctx.lineTo(x, y);
+                        }
+                    }
+                    ctx.closePath();
+                    ctx.stroke();
+                }
+            }
+            
+            drawRushWaves(ctx) {
+                const waveCount = 2;
+                const waveIntensity = 1.5;
+                
+                for (let i = 0; i < waveCount; i++) {
+                    const waveRadius = this.size * (2 + i * 0.8) * waveIntensity;
+                    const waveAlpha = (1 - i / waveCount) * 0.5;
+                    const waveOffset = this.waveTimer * 2 + i * Math.PI / 2;
+                    
+                    ctx.strokeStyle = `rgba(255, 107, 53, ${waveAlpha})`;
+                    ctx.lineWidth = 3;
+                    ctx.setLineDash([]);
+                    
+                    ctx.beginPath();
+                    for (let angle = 0; angle < Math.PI * 2; angle += 0.1) {
+                        const wave = Math.sin(angle * 6 + waveOffset) * 5;
                         const x = this.x + Math.cos(angle) * (waveRadius + wave);
                         const y = this.y + Math.sin(angle) * (waveRadius + wave);
                         
