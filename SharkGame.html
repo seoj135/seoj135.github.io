@@ -1147,24 +1147,35 @@
                                 return; // Exit early to start teleporting
                             }
                             
-                            // Slow movement in center
-                            this.vx *= 0.95;
-                            this.vy *= 0.95;
+                            // Continue pulling toward exact center even in teleport zone
+                            const centerPullForce = 0.04; // Strong pull toward exact center
+                            const centerSwirl = 0.02; // Gentle swirl in center
+                            
+                            this.vx = this.vx * 0.9 + (-dx * centerPullForce + -dy * centerSwirl);
+                            this.vy = this.vy * 0.9 + (-dy * centerPullForce + dx * centerSwirl);
+                            
+                            // Allow controlled movement in center zone
+                            const currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                            const maxCenterSpeed = this.baseSpeed * 0.8; // Slightly slower in center but still moving
+                            if (currentSpeed > maxCenterSpeed) {
+                                this.vx = (this.vx / currentSpeed) * maxCenterSpeed;
+                                this.vy = (this.vy / currentSpeed) * maxCenterSpeed;
+                            }
                         } else {
                             // Not in center, reset timer
                             this.whirlpoolCenterTimer = 0;
                             
-                            // Apply gentle swirling force toward center (reduced speed)
-                            const centerForce = 0.01; // Reduced from 0.02
-                            const swirl = 0.015; // Reduced from 0.03
+                            // Apply stronger swirling force toward center for faster pull
+                            const centerForce = 0.025; // Increased from 0.01
+                            const swirl = 0.035; // Increased from 0.015
                             
-                            // Apply forces more gently to avoid speeding up survivors
-                            this.vx = this.vx * 0.98 + (-dx * centerForce + -dy * swirl);
-                            this.vy = this.vy * 0.98 + (-dy * centerForce + dx * swirl);
+                            // Apply stronger forces to pull survivors toward center faster
+                            this.vx = this.vx * 0.95 + (-dx * centerForce + -dy * swirl);
+                            this.vy = this.vy * 0.95 + (-dy * centerForce + dx * swirl);
                             
-                            // Cap the speed to prevent acceleration
+                            // Allow slightly higher speed in whirlpools for faster pull
                             const currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                            const maxSpeed = this.baseSpeed * (this.boosted ? 2.0 : 1.0);
+                            const maxSpeed = this.baseSpeed * (this.boosted ? 2.5 : 1.5); // Increased max speed in whirlpools
                             if (currentSpeed > maxSpeed) {
                                 this.vx = (this.vx / currentSpeed) * maxSpeed;
                                 this.vy = (this.vy / currentSpeed) * maxSpeed;
